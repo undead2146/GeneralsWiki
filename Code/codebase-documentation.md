@@ -31,6 +31,20 @@ This document provides a comprehensive overview of the C&C Generals: Zero Hour c
 
 </details>
 
+<details> <summary>Usage of AI models</summary>
+
+## AI-Generated Documentation Disclaimer
+
+This documentation was created using Claude 3.7 Thinking AI to assist the open source implementation of C&C Generals: Zero Hour. As the maintainer, I am not an experienced C++ developer, which led me to leverage AI assistance for this documentation effort.
+
+## Methodology
+The documentation was generated through:
+
+- Analyzing the complete codebase tree structure
+- Applying custom code generation instructions to extract meaningful insights
+- Organizing information in a progressive, easy-to-follow format
+</details>
+
 <details>
 <summary>For Contributors</summary>
 
