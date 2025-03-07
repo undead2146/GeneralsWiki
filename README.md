@@ -10,6 +10,12 @@ This wiki is designed to serve as a central resource for anyone interested in th
 of its creation, and the technological dependencies involved. Whether you're a developer, researcher, or simply curious,
 you'll find the information you need to understand the development aspects of the game.
 
+This repository will serve as the primary source for the internal wiki of the GitHub repositories. In the future, there
+are plans to set up a dedicated website for the wiki, which will provide easier access to the information and help
+developers and researchers utilize it more effectively. The internal wiki will be synchronized with this repository
+using appropriate tools to ensure consistency and up-to-date documentation. We will keep you updated with more details
+as these plans unfold.
+
 ### Wiki Structure
 
 The wiki is divided into several main sections:
