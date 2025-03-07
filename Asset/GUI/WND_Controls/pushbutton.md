@@ -5,7 +5,7 @@ You can define the position, size, and appearance of the button,
 as well as how it behaves in different states (enabled, disabled, highlighted).
 
 ## Available Tags
-The PushButton control does not include any unique tags beyond the [default control tags](../controls/user.md).
+The PushButton control does not include any unique tags beyond the [default control tags](/user.md).
 It uses the same general set of tags applicable to all controls.
 
 ## Default values and usage

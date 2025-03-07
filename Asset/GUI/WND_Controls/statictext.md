@@ -5,7 +5,7 @@ position, size, and appearance of the text, but users cannot edit or interact wi
 
 ## Available Tags
 
-In addition to the [default control tags](../controls/user.md), the StaticText control has the following unique tag:
+In addition to the [default control tags](/user.md), the StaticText control has the following unique tag:
 
 | Tag              | Description                                           |
 |------------------|-------------------------------------------------------|
