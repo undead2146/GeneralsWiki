@@ -308,7 +308,7 @@ Critical interaction pathways employ specialized optimization techniques:
 
 The subsystem boundaries are maintained through interface classes:
 - 🧩 `Common/SubsystemInterface.h`: Base interface for all major subsystems
-- 🔄 Game-specific implementations (GameClient.h, GameLogic.h, GameNetwork.h, etc.)
+- 🔄 Game-specific implementations (GameClient.h, GameLogic.h, etc.)
 
 Inter-subsystem communication follows several patterns:
 1. **Direct API Calls**: For synchronous, performance-critical interactions
@@ -460,31 +460,7 @@ The memory management system is designed to track all dynamic memory allocations
 </details>
 </blockquote>
 
-<blockquote>
-<details>
-<summary>Memory Pools & Specialized Allocators</summary>
 
-- 🛠️ `Common/MemoryPool.h` - Object pooling system
-  - **Purpose**: Fast allocation of frequently created and destroyed object types
-  - **Used by**: Particle systems, object factories, temporary object creation
-  - **Dependencies**: GameMemory.h
-  - **Key functions**: 
-    - `Allocate()`: Get object from pool
-    - `Free(T* object)`: Return object to pool
-    - `Reset()`: Clear all allocations
-    - `GetCapacity()`: Get total objects in pool
-    - `GetAvailable()`: Get number of available objects
-  - **Features**:
-    - Templated implementation for type safety
-    - Reduces memory fragmentation
-    - Optimizes allocation speed for small, frequent allocations
-    - Efficient reuse of memory blocks
-    - Pre-allocation for predictable memory usage
-
-Memory pools provide a critical optimization for real-time performance by reducing the overhead of frequent allocations and deallocations. They are particularly important for systems like particles, projectiles, and temporary game objects that are created and destroyed frequently during gameplay.
-
-</details>
-</blockquote>
 
 <blockquote>
 <details>
@@ -520,7 +496,7 @@ Memory debugging tools help identify issues like leaks and corruptions during de
                 ▼
 ┌─────────────────────────────┐
 │       GameMemory.h          │    ┌─────────────────┐
-│  (Central Memory Manager)   │<-->│  MemoryPool.h   │
+│  (Central Memory Manager)   │<-->│  MemoryPool   │
 └───────────────┬─────────────┘    │ (Object Pools)  │
                 │                  └─────────────────┘
                 ▼
@@ -856,7 +832,6 @@ The UI system uses a component-based architecture with inheritance:
 1. **Core Window System**:
    - `GameWindow.h`: Base window container
    - `GameWindowManager.h`: Manages window creation and relationships
-   - `WindowTransitions.h`: Handles animations between UI states
 
 2. **Widget Hierarchy**:
    - `Gadget.h`: Base UI widget class
@@ -922,7 +897,7 @@ The UI system uses a component-based architecture with inheritance:
 - 🖼️ `GameClient/GadgetListBox.h` - List display widget
   - **Purpose**: Display and select from a list of items
   - **Used by**: Selection menus, option lists
-  - **Dependencies**: Gadget.h, GadgetScrollBar.h
+  - **Dependencies**: Gadget.h, 
   - **Key functions**: 
     - `AddItem(const char* text, void* userData)`: Add list item
     - `RemoveItem(int index)`: Remove list item
@@ -1067,15 +1042,6 @@ The UI system uses a component-based architecture with inheritance:
     - `HandleClick(Point position)`: Process radar clicks
   - **Features**: Unit tracking, fog of war, territory indicators
 
-- 🖼️ `GameClient/StatusCircle.h` - Unit status indicator
-  - **Purpose**: Display visual status around units
-  - **Used by**: InGameUI.h
-  - **Dependencies**: Object.h, W3DStatusCircle.h
-  - **Key functions**: 
-    - `RenderForObject(ObjectID id)`: Draw status for object
-    - `UpdateStatuses()`: Refresh all status circles
-    - `ConfigureAppearance(CircleType type)`: Set visual style
-  - **Types**: Selection, Health, Special ability, Rally point
 
 - 🖼️ `GameClient/GraphDraw.h` - Performance graph display
   - **Purpose**: Render performance metrics
@@ -1502,7 +1468,7 @@ Game mechanics and simulation systems.
         │
         ▼
 ┌───────────────┐        ┌────────────────┐
-│ GameLogic.h   │◄──────►│ GameNetwork.h  │
+│ GameLogic.h   │◄──────►│ GameNetwork  │
 │ Update() Call │        │ Command Sync   │
 └───────┬───────┘        └────────────────┘
         │
@@ -1561,7 +1527,7 @@ The update rate is locked to a fixed timestep (typically 10 updates per second) 
 - 🎮 `GameLogic/SidesList.h` - Faction definition system
   - **Purpose**: Define playable factions and their capabilities
   - **Used by**: GameLogic.h, team management
-  - **Dependencies**: TeamsList.h, PlayerTemplate.h
+  - **Dependencies**:  PlayerTemplate.h
   - **Key functions**: 
     - `GetSideInfo(SideID id)`: Get faction information
     - `GetUnitList(SideID id)`: Get buildable units for faction
@@ -1571,7 +1537,7 @@ The update rate is locked to a fixed timestep (typically 10 updates per second) 
 - 🎮 `GameLogic/TeamsList.h` - Team management system
   - **Purpose**: Manage player teams and alliances
   - **Used by**: Player.h, VictoryConditions.h
-  - **Dependencies**: TeamID.h
+  - **Dependencies**: 
   - **Key functions**: 
     - `CreateTeam(TeamID id)`: Create new team
     - `AddPlayerToTeam(PlayerID player, TeamID team)`: Add player to team
@@ -1989,13 +1955,18 @@ The hardest AI difficulties employ more advanced tactics like feint attacks, com
 
 - 🎮 `GameLogic/Damage.h` - Damage system
   - **Purpose**: Damage calculation and application
-  - **Used by**: Weapon.h, PowerSystem.h
+  - **Used by**: Weapon.h
   - **Dependencies**: Armor.h, DamageFX.h
   - **Key functions**: Apply(), CanDamage(), GetEfficiency()
 </details>
 </blockquote>
 </details>
 </blockquote>
+
+
+
+
+
 
 <blockquote>
 <details>
@@ -2382,7 +2353,7 @@ Multiplayer networking system handling connections, game synchronization, and on
 - 🌐 `GameNetwork/DisconnectManager.h` - Connection state management
   - **Purpose**: Handle graceful disconnection, protocol violations, and connection recovery
   - **Used by**: NetworkInterface.h, ConnectionManager.h
-  - **Dependencies**: Connection.h, NetworkDefs.h, NetworkDiagnostics.h
+  - **Dependencies**: Connection.h, NetworkDefs.h, 
   - **Key functions**: 
     - `HandleConnectionDropped(Connection* conn, DropReason reason)`: Process unexpected connection loss
     - `InitiateDisconnect(Connection* conn, DisconnectReason reason, DisconnectFlags flags)`: Begin graceful disconnect with options
@@ -2592,7 +2563,7 @@ Key initialization files:
 
 - 🌐 `GameNetwork/FrameDataManager.h` - Synchronization management
   - **Purpose**: Coordinate game state across multiple clients
-  - **Used by**: GameNetwork.h, NetworkInterface.h
+  - **Used by**:NetworkInterface.h
   - **Dependencies**: FrameData.h, ConnectionManager.h
   - **Key functions**: 
     - `DispatchFrames()`: Send pending frames
@@ -2646,7 +2617,7 @@ Key initialization files:
 
 - 🌐 `GameNetwork/GameSpy.h` - GameSpy service integration
   - **Purpose**: Connect to GameSpy online services
-  - **Used by**: GameNetwork.h, lobby systems
+  - **Used by**:  lobby systems
   - **Dependencies**: GameSpyGP.h, GameSpyGameInfo.h
   - **Key functions**: 
     - `Initialize()`: Connect to GameSpy services
@@ -3051,7 +3022,7 @@ This reliability system ensures critical game data reaches all players while min
 
 - 🌐 `GameNetwork/GameSpy.h` - GameSpy integration system
   - **Purpose**: Central coordinator for GameSpy online services
-  - **Used by**: GameNetwork.h, UI lobby systems
+  - **Used by**:  UI lobby systems
   - **Dependencies**: GameSpyGP.h, GameSpyChat.h, GameSpyGameInfo.h
   - **Key functions**: 
     - `Initialize(GameSpyCredentials* creds)`: Set up GameSpy services
@@ -3205,16 +3176,6 @@ All ranking calculations happen on secure servers to prevent tampering, with res
 <details>
 <summary>Network Diagnostics & Debugging (3+ files)</summary>
 
-- 🛠️ `GameNetwork/NetworkDiagnostics.h` - Network diagnostics system
-  - **Purpose**: Troubleshoot and monitor network performance
-  - **Used by**: NetworkInterface.h, DisconnectManager.h
-  - **Dependencies**: Transport.h, Connection.h
-  - **Key functions**: 
-    - `RunDiagnostic(DiagnosticType type)`: Perform network test
-    - `GetConnectionQuality()`: Assess connection health
-    - `LogPacketStatistics()`: Record packet metrics
-    - `GenerateNetworkReport()`: Create comprehensive report
-  - **Diagnostics**: Latency testing, packet loss measurement, bandwidth estimation, MTU discovery
 
 - 🛠️ `GameNetwork/networkutil.h` - Network utility functions
   - **Purpose**: Helper functions for network operations
@@ -3380,6 +3341,146 @@ These tools are only available in development builds and are essential for ident
     - `Flush_Buffers()`: Process pending render operations
     - `Draw_Triangles()`: Render primitives
     - `Set_Shader()`: Apply shader effects
+</details>
+</blockquote>
+
+
+<blockquote>
+<details>
+<summary>Shader System (15+ files)</summary>
+
+- 🔄 `GameRenderer/dx8/dx8shader.h` - Shader management system
+  - **Purpose**: Manage and apply DirectX shader effects
+  - **Used by**: dx8renderer.h, material system
+  - **Dependencies**: d3d8.h, d3dx8effect.h
+  - **Key functions**: 
+    - `LoadShader(const char* filename)`: Load shader from file
+    - `ApplyShader(ShaderID id)`: Set shader as active
+    - `SetShaderParameter(ParamID id, const void* data)`: Set shader parameter
+    - `OptimizeShader(ShaderID id)`: Compile shader for target hardware
+  - **Features**: Effect parameter control, shader caching, hardware detection
+
+- 🔄 `GameRenderer/dx8/dx8shaderparam.h` - Shader parameter handling
+  - **Purpose**: Manage shader parameters and constants
+  - **Used by**: dx8shader.h, material system
+  - **Dependencies**: d3d8.h, d3dx8effect.h
+  - **Key functions**: 
+    - `SetVector(const char* name, Vector4 value)`: Set vector parameter
+    - `SetMatrix(const char* name, Matrix4x4 value)`: Set matrix parameter
+    - `SetTexture(const char* name, TextureID texture)`: Set texture parameter
+    - `CommitChanges()`: Apply all parameter changes
+  - **Design**: Parameter abstraction layer for shader control
+
+<blockquote>
+<details>
+<summary>Shader Pipeline Architecture</summary>
+
+```ascii
+┌───────────────────┐          ┌───────────────────┐
+│   Shader Source   │────────► │   Shader Compiler │
+│   (.fx files)     │          │   (runtime/build) │
+└───────────────────┘          └─────────┬─────────┘
+                                         │
+                                         ▼
+┌───────────────────┐          ┌───────────────────┐
+│  Shader Manager   │◄────────►│   Compiled Shader │
+│  (dx8shader.h)    │          │   (.fxo binary)   │
+└────────┬──────────┘          └───────────────────┘
+         │
+         │                     ┌───────────────────┐
+         │                     │  Global Parameters│
+         │                     │  (time, camera)   │
+         │                     └─────────┬─────────┘
+         │                               │
+         │                               ▼
+┌────────▼──────────┐          ┌───────────────────┐
+│  Material System  │────────► │ Parameter Manager │
+│                   │          │(dx8shaderparam.h) │
+└────────┬──────────┘          └─────────┬─────────┘
+         │                               │
+         ▼                               ▼
+┌───────────────────┐          ┌───────────────────┐
+│ Rendering System  │────────► │    D3D Device     │
+│ (dx8renderer.h)   │          │    (hardware)     │
+└───────────────────┘          └───────────────────┘
+```
+
+The shader system manages DirectX 8 programmable shader effects through several stages:
+
+1. **Shader Development**:
+   - Written in HLSL (High Level Shader Language)
+   - Organized in .fx effect files combining multiple techniques
+   - Techniques for different quality levels and hardware capabilities
+
+2. **Compilation**:
+   - Pre-compiled during build for common hardware targets
+   - Runtime compilation for unique hardware configurations
+   - Optimization based on detected hardware capabilities
+
+3. **Parameter Management**:
+   - Material-specific parameters (diffuse color, specular power)
+   - Global parameters (time, view/projection matrices)
+   - Dynamic parameters updated per-frame or per-object
+
+4. **Technique Selection**:
+   - Hardware capability detection
+   - Quality setting consideration
+   - Fallback paths for unsupported features
+
+5. **Render State Integration**:
+   - Shader-driven render state changes
+   - State caching to minimize API calls
+   - Batch-friendly design for performance
+
+The shader system supports both fixed-function fallbacks for older hardware and programmable shader paths for newer hardware, automatically selecting the appropriate technique based on hardware detection.
+</details>
+</blockquote>
+
+<blockquote>
+<details>
+<summary>Key Shader Effects</summary>
+
+The engine implements several specialized shader effects:
+
+1. **Terrain Shaders**:
+   - Multi-texture blending (up to 4 layers)
+   - Detail texturing for close-up detail
+   - Dynamic shadow reception
+   - Height-based blending
+
+2. **Unit Shaders**:
+   - Team color application
+   - Damage state visualization
+   - Selective invisibility (stealth units)
+   - Animation interpolation
+
+3. **Structure Shaders**:
+   - Construction/damage visualization
+   - Interior lighting effects
+   - Window illumination
+   - Destruction effects
+
+4. **Water Shaders**:
+   - Real-time reflections
+   - Wave animation
+   - Shoreline effects
+   - Depth-based color adjustment
+
+5. **Special Effect Shaders**:
+   - Explosion distortion and lighting
+   - Particle systems (additive, alpha blended)
+   - Beam weapons and laser effects
+   - Weather effects (rain, snow, dust)
+
+6. **Post-Processing Shaders**:
+   - Bloom and glow effects
+   - Color correction and tone mapping
+   - Motion blur for fast-moving objects
+   - Tactical view enhancements
+
+Each shader category is optimized for its specific use case while sharing common code for efficiency. The shader system automatically selects appropriate techniques based on hardware capabilities and quality settings.
+</details>
+</blockquote>
 </details>
 </blockquote>
 
@@ -3575,67 +3676,8 @@ Sound management and playback systems with dual implementation support (Miles Au
     - `Update3DPosition(HandleID handle, Vector3 position)`: Update sound position
   - **Features**: Hardware acceleration, EAX effects support, streaming audio
 
-<blockquote>
-<details>
-<summary>Miles Low-Level Systems</summary>
 
-- 🔊 `MilesAudioDevice/internal/MilesDigital.h` - Digital sound playback
-  - **Purpose**: Handle digital audio playback (effects, speech)
-  - **Used by**: MilesAudioManager.h
-  - **Dependencies**: mss.h
-  - **Key functions**: 
-    - `InitDigitalSystem()`: Set up digital audio subsystem
-    - `AllocateVoice()`: Reserve voice for playback
-    - `SetVoiceVolume(VoiceID voice, float volume)`: Adjust voice volume
-  - **Design**: Wrapper around Miles digital sound API
 
-- 🔊 `MilesAudioDevice/internal/Miles3D.h` - 3D positional audio
-  - **Purpose**: Process and play 3D positional sounds
-  - **Used by**: MilesAudioManager.h
-  - **Dependencies**: mss.h, MilesDigital.h
-  - **Key functions**: 
-    - `Init3DProvider()`: Initialize 3D audio provider
-    - `UpdateListener(Vector3 position, Vector3 direction)`: Update listener position
-    - `Setup3DSound(SoundID id, Vector3 position)`: Configure 3D sound
-  - **Features**: Distance attenuation, Doppler effect, environmental effects
-
-- 🔊 `MilesAudioDevice/internal/MilesStreaming.h` - Streaming audio system
-  - **Purpose**: Handle streaming audio (music, long voice lines)
-  - **Used by**: MilesAudioManager.h
-  - **Dependencies**: mss.h, file.h
-  - **Key functions**: 
-    - `OpenStream(const char* filename)`: Begin streaming file
-    - `UpdateStreaming()`: Process stream data
-    - `CloseStream(StreamID stream)`: End streaming
-  - **Features**: Supports MP3, OGG formats with efficient memory usage
-</details>
-</blockquote>
-
-<blockquote>
-<details>
-<summary>Miles Audio Resources</summary>
-
-- 🔊 `MilesAudioDevice/MilesResources.h` - Audio resource management
-  - **Purpose**: Manage sound loading and memory
-  - **Used by**: MilesAudioManager.h
-  - **Dependencies**: mss.h, FileSystemEA.h
-  - **Key functions**: 
-    - `LoadSample(const char* filename)`: Load sound sample
-    - `UnloadSample(SampleID id)`: Free sample memory
-    - `GetFormat(SampleID id)`: Get audio format information
-  - **Features**: Cache management, reference counting, format conversion
-
-- 🔊 `MilesAudioDevice/MilesEffects.h` - Audio processing effects
-  - **Purpose**: Apply sound effects and processing
-  - **Used by**: MilesAudioManager.h
-  - **Dependencies**: mss.h
-  - **Key functions**: 
-    - `ApplyReverb(ReverbType type)`: Add reverb effect
-    - `ApplyFilter(FilterType type, float cutoff)`: Apply audio filter
-    - `CreateCustomEffect(EffectParameters params)`: Create custom effect
-  - **Features**: Environmental effects (reverb, echo), dynamic filters
-</details>
-</blockquote>
 </details>
 </blockquote>
 
@@ -3664,42 +3706,6 @@ Sound management and playback systems with dual implementation support (Miles Au
     - `ConvertToALFormat(AudioData* data)`: Convert to OpenAL format
   - **Features**: Format detection, streaming support, memory management
 
-<blockquote>
-<details>
-<summary>OpenAL Core Systems</summary>
-
-- 🔊 `OpenALAudioDevice/internal/ALContext.h` - OpenAL context management
-  - **Purpose**: Manage OpenAL context and devices
-  - **Used by**: OpenALAudioManager.h
-  - **Dependencies**: alc.h
-  - **Key functions**: 
-    - `EnumerateDevices()`: List available audio devices
-    - `CreateContext(DeviceID device)`: Create audio context
-    - `MakeContextCurrent(ContextID context)`: Set active context
-  - **Design**: RAII pattern for context lifecycle management
-
-- 🔊 `OpenALAudioDevice/internal/ALSource.h` - Sound source management
-  - **Purpose**: Control individual sound sources
-  - **Used by**: OpenALAudioManager.h
-  - **Dependencies**: al.h
-  - **Key functions**: 
-    - `CreateSource()`: Create new sound source
-    - `Play(BufferID buffer)`: Play sound buffer
-    - `SetPosition(Vector3 position)`: Set source position
-    - `SetVelocity(Vector3 velocity)`: Set source velocity
-  - **Features**: Positional audio, velocity effects, looping control
-
-- 🔊 `OpenALAudioDevice/internal/ALBuffer.h` - Audio buffer management
-  - **Purpose**: Manage sound data buffers
-  - **Used by**: OpenALAudioManager.h, ALSource.h
-  - **Dependencies**: al.h
-  - **Key functions**: 
-    - `CreateBuffer()`: Allocate audio buffer
-    - `BufferData(BufferID buffer, format, data, size, frequency)`: Fill buffer with data
-    - `DeleteBuffer(BufferID buffer)`: Free buffer resources
-  - **Features**: Format conversion, buffer queuing for streaming
-</details>
-</blockquote>
 
 <blockquote>
 <details>
@@ -3715,15 +3721,7 @@ Sound management and playback systems with dual implementation support (Miles Au
     - `AttachEffectToSource(EffectID effect, SourceID source)`: Apply effect to source
   - **Features**: Reverb, chorus, distortion effects
 
-- 🔊 `OpenALAudioDevice/effects/ALEnvironment.h` - Environmental audio
-  - **Purpose**: Simulate acoustic environments
-  - **Used by**: OpenALAudioManager.h, game environment system
-  - **Dependencies**: ALEffects.h, efx.h
-  - **Key functions**: 
-    - `SetEnvironment(EnvironmentType type)`: Apply predefined environment
-    - `CustomizeEnvironment(EnvironmentParams params)`: Create custom environment
-    - `TransitionEnvironment(EnvironmentType target, float duration)`: Blend environments
-  - **Environments**: Indoor, Outdoor, Cave, Underwater, Tunnel
+
 </details>
 </blockquote>
 </details>
