@@ -6,7 +6,7 @@ well as how it behaves in different states (enabled, disabled, highlighted).
 
 ## Available Tags
 
-In addition to the [default control tags](../controls/user.md), the RadioButton control has the following unique tag:
+In addition to the [default control tags](/user.md), the RadioButton control has the following unique tag:
 
 | Tag               | Description                                                                     |
 |-------------------|---------------------------------------------------------------------------------|
