@@ -6,7 +6,7 @@ interacts with it.
 
 ## Available Tags
 
-The Checkbox control does not have any unique tags beyond the [default control tags](../controls/user.md).
+The Checkbox control does not have any unique tags beyond the [default control tags](/user.md).
 It uses the same general set of tags applicable to all controls.
 
 ## Default Values and Usage

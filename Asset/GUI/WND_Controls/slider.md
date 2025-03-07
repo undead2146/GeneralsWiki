@@ -6,7 +6,7 @@ the slider, and it updates automatically as the user interacts with it.
 
 ## Available Tags
 
-In addition to the [default control tags](../controls/user.md), the Slider control has the following unique tags:
+In addition to the [default control tags](/user.md), the Slider control has the following unique tags:
 
 | Tag                           | Description                                                                       |
 |-------------------------------|-----------------------------------------------------------------------------------|
