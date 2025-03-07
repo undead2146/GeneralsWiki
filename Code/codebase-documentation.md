@@ -1939,6 +1939,8 @@ The hardest AI difficulties employ more advanced tactics like feint attacks, com
 </details>
 </blockquote>
 
+
+
 <blockquote>
 <details>
 <summary>Combat Systems (10+ files)</summary>
@@ -1961,10 +1963,222 @@ The hardest AI difficulties employ more advanced tactics like feint attacks, com
 </details>
 </blockquote>
 </details>
+
+
+<details>
+<summary>Player System (12+ files)</summary>
+
+<blockquote>
+<details>
+<summary>Core Player Management</summary>
+
+- 🎮 `GameLogic/Player.h` - Player controller
+  - **Purpose**: Central player management and state tracking
+  - **Used by**: GameLogic.h, AI systems, UI systems
+  - **Dependencies**: PlayerTemplate.h, SidesList.h, TeamsList.h
+  - **Key functions**: 
+    - `Initialize(PlayerID id, SideID faction)`: Set up player with faction
+    - `SetColor(ColorType color)`: Set player color
+    - `GetSide()`: Get player faction
+    - `AddUnit(ObjectID unit)`: Register unit with player
+    - `RemoveUnit(ObjectID unit)`: Remove unit from player ownership
+    - `GetMoney()`: Get player resource amount
+    - `ChangeMoney(int amount)`: Modify player resource amount
+    - `GetPower()`: Get current power production
+    - `CanBuild(ObjectType type)`: Check if player can build object
+  - **Features**: Resource management, unit ownership tracking, tech tree status
+
+- 🎮 `GameLogic/PlayerTemplate.h` - Player configuration template
+  - **Purpose**: Define player starting parameters
+  - **Used by**: Player.h, GameLogic.h
+  - **Dependencies**: SidesList.h
+  - **Key functions**: 
+    - `SetStartingMoney(int amount)`: Set initial resources
+    - `SetStartingPower(int amount)`: Set initial power level
+    - `GetStartingPosition()`: Get initial base location
+    - `AddStartingUnit(UnitType type, int count)`: Add unit to starting forces
+  - **Features**: Configurable player start conditions by map or scenario
+
+- 🎮 `GameLogic/ExperienceTracker.h` - Experience management
+  - **Purpose**: Manage experience distribution
+  - **Used by**: Combat system
+  - **Dependencies**: ExperienceLevel.h, Player.h
+  - **Key functions**: 
+    - `AwardExperience(ObjectID source, ObjectID target, int baseAmount)`: Award XP for kill
+    - `CalculateExperienceValue(ObjectID object)`: Calculate object's XP value
+    - `DistributeExperience(ObjectID killed, int amount, float radius)`: Share XP with nearby units
+  - **Features**: Experience sharing, kill value calculation, group bonuses
+</details>
+</blockquote>
+
+<blockquote>
+<details>
+<summary>Player Interaction System</summary>
+
+```ascii
+┌─────────────────┐      ┌─────────────────┐
+│   Game Client   │◄────►│  Player Input   │
+│   (User Input)  │      │  (Commands)     │
+└────────┬────────┘      └────────┬────────┘
+         │                        │
+         │                        ▼
+         │               ┌─────────────────┐
+         │               │Command Processing│
+         │               │  (Validation)   │
+         │               └────────┬────────┘
+         │                        │
+         │                        ▼
+         │               ┌─────────────────┐
+         └──────────────►│ Local Player    │
+                         │ (State Updates) │
+                         └────────┬────────┘
+                                  │
+                                  ▼
+                         ┌─────────────────┐
+                         │ Game Logic      │
+                         │ (Execution)     │
+                         └─────────────────┘
+```
+
+The player command and interaction system follows a clear flow:
+
+1. **Input Capture**:
+   - User inputs from mouse/keyboard are captured in GameClient
+   - Raw inputs are translated to semantic commands (move, attack, build)
+   - Commands include targets, locations, or parameters
+
+2. **Command Validation**:
+   - Commands are validated for the current game state
+   - Checks player resources, tech level, and permissions
+   - Invalid commands generate feedback (insufficient funds, etc.)
+
+3. **Command Processing**:
+   - Valid commands are translated to game simulation actions
+   - Local commands are sent to network for synchronization
+   - Commands are scheduled for execution in the simulation
+
+4. **Player State Update**:
+   - Player state (selection, camera, focus) is updated
+   - UI feedback is generated for command acknowledgment
+   - Visual indicators show command progress
+
+5. **Execution**:
+   - GameLogic system executes command effects
+   - Units respond to orders, buildings start construction
+   - Game state changes propagate through simulation
+
+This flow ensures consistent behavior across network games by synchronizing commands rather than state, maintaining the deterministic simulation needed for RTS gameplay.
+</details>
+</blockquote>
+</details>
+
+
+
+<details>
+<summary>Terrain System (15+ files)</summary>
+
+<blockquote>
+<details>
+<summary>Core Terrain Components</summary>
+
+- 🔄 `GameLogic/TerrainLogic.h` - Terrain gameplay logic
+  - **Purpose**: Handle terrain gameplay effects and properties
+  - **Used by**: Pathfinding, combat system, placement system
+  - **Dependencies**: HeightMap.h, TerrainTile.h, Damage.h
+  - **Key functions**: 
+    - `GetHeight(float x, float z)`: Get terrain height at position
+    - `GetSurfaceType(float x, float z)`: Get ground surface type
+    - `IsPassable(float x, float z, UnitType type)`: Check if unit can traverse
+    - `ApplyDamage(Vector3 position, float radius, DamageInfo damage)`: Apply terrain damage
+    - `GetSlopeAngle(float x, float z)`: Get terrain slope angle
+  - **Surface Types**: Dirt, Sand, Rock, Grass, Concrete, Shallow Water, Deep Water
+  - **Features**: Terrain destruction, material-specific effects, elevation impacts
+
+- 🎮 `GameLogic/HeightMap.h` - Elevation data storage
+  - **Purpose**: Store and access terrain elevation data
+  - **Used by**: TerrainLogic.h, TerrainVisual.h
+  - **Dependencies**: None
+  - **Key functions**: 
+    - `GetHeight(int x, int z)`: Get height at grid position
+    - `SetHeight(int x, int z, float height)`: Set height at point
+    - `GetNormal(int x, int z)`: Get surface normal vector
+    - `GetInterpolatedHeight(float x, float z)`: Get smoothed height
+    - `GetHeightMapDimensions()`: Get map dimensions
+  - **Implementation**: Height grid with interpolation for smooth access
+
+- 🖼️ `GameClient/TerrainVisual.h` - Visual terrain representation
+  - **Purpose**: Render terrain and manage visual appearance
+  - **Used by**: GameRenderer, View.h
+  - **Dependencies**: TerrainLogic.h, TerrainTextureSet.h
+  - **Key functions**: 
+    - `RenderTerrain()`: Draw terrain meshes
+    - `UpdateTextureMaps()`: Update terrain texturing
+    - `ApplyTexture(int x, int z, TextureID texture, float strength)`: Apply texture blend
+    - `CreateScorch(Vector3 position, float radius, float intensity)`: Add burn mark
+  - **Visual Features**: Multi-texture blending, dynamic shadowing, terrain damage marks
+</details>
 </blockquote>
 
 
+<blockquote>
+<details>
+<summary>Terrain Data Architecture</summary>
 
+```ascii
+┌───────────────────┐       ┌───────────────────┐
+│                   │       │                   │
+│  Height Data      │◄─────►│  Texture Data     │
+│  (HeightMap.h)    │       │  (TerrainTexture.h)│
+│                   │       │                   │
+└─────────┬─────────┘       └────────┬──────────┘
+          │                          │
+          └──────────┬───────────────┘
+                     │
+          ┌──────────▼───────────┐
+          │                      │
+          │  Terrain Logic       │
+          │  (TerrainLogic.h)    │
+          │                      │
+          └──────────┬───────────┘
+                     │
+     ┌───────────────┼───────────────────┐
+     │               │                   │
+┌────▼────┐    ┌─────▼─────┐      ┌─────▼─────┐
+│Pathfinding│   │Construction│     │Environment│
+│System    │   │System      │     │Effects    │
+└──────────┘   └───────────┘      └───────────┘
+```
+
+The terrain system uses a layered architecture to separate data from behaviors:
+
+1. **Data Layers**: 
+   - Height data: Elevation values in a grid format
+   - Texture data: Surface material definitions and blending weights
+   - Property data: Special terrain attributes (impassable, damage multipliers)
+
+2. **Logic Layer**:
+   - Acts as interface between data and gameplay systems
+   - Provides interpretation of raw data for game mechanics
+   - Handles terrain modification and state changes
+
+3. **Client Systems**: Multiple gameplay systems access terrain data:
+   - Pathfinding: Movement costs and restrictions
+   - Construction: Building placement validation
+   - Combat: Cover effects, line of sight, damage modifications
+   - Environment: Weather effects, time of day impacts
+
+4. **Visual System**: (Separate from logic)
+   - Terrain mesh generation
+   - Texture application and blending
+   - Lighting and shadowing
+   - Decoration placement
+
+This architecture maintains separation between gameplay effects and visual representation, allowing each to evolve independently while sharing common data sources.
+</details>
+</blockquote>
+
+</details>
+</blockquote>
 
 
 
