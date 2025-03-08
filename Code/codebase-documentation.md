@@ -68,7 +68,7 @@ When documenting new components:
 </details>
 
 
-## System Overview
+# System Overview
 
 <details>
 <summary>High-level Architecture</summary>
@@ -384,7 +384,7 @@ The engine scales dynamically across different hardware configurations, adjustin
 </blockquote>
 </details>
 
-## Common System
+# Common System
 
 <details>
 <summary>Common (150+ files)</summary>
@@ -752,7 +752,7 @@ Fundamental systems that provide engine-wide services and coordination.
 </details>
 
 
-## GameClient
+# GameClient
 
 <details>
 <summary>GameClient (90+ files)</summary>
@@ -1076,7 +1076,7 @@ The UI system uses a component-based architecture with inheritance:
 - 🖼️ `GameClient/W3DDisplay.h` - 3D display implementation
   - **Purpose**: Implement 3D display functionality
   - **Used by**: Display.h
-  - **Dependencies**: GameRenderer.h, dx8wrapper.h
+  - **Dependencies**: dx8wrapper.h
   - **Key functions**: 
     - `Initialize3D()`: Set up 3D rendering
     - `SetRenderState(StateType type, StateValue value)`: Configure renderer
@@ -1413,7 +1413,7 @@ The client module system provides specialized update behaviors for visual and in
 </details>
 </blockquote>
 
-## GameLogic
+# GameLogic
 
 <details>
 <summary>GameLogic (100+ files)</summary>
@@ -1889,42 +1889,21 @@ The pathfinding system is designed to handle hundreds of units efficiently by us
 <details>
 <summary>Decision-Making Systems</summary>
 
-- 🎮 `GameLogic/AIStateMachine.h` - State-based decision system
-  - **Purpose**: Implement finite state machines for AI behavior
-  - **Used by**: AI.h, AIPlayer.h, unit AI modules
-  - **Dependencies**: None
-  - **Key functions**: 
-    - `AddState(StateID id, StateInfo* info)`: Define behavior state
-    - `SetState(StateID id)`: Change current state
-    - `UpdateState()`: Process current state logic
-    - `AddTransition(StateID from, StateID to, TransitionCondition condition)`: Define state transition
-  - **Features**: Context-sensitive behaviors, event-driven transitions
+- 🎮 `GameLogic/AIStateMachine.h` ❓ - State-based decision system
+  - **Note**: File presence needs verification
+  
+The AI likely employs several decision-making approaches:
 
-The AI employs several decision-making systems depending on the complexity of the task:
-
-1. **Finite State Machines (FSM)**:
+1. **Finite State Machines (FSM)**: ✓ (Verified by AIStateMachine.h)
    - Used for unit-level behavior
    - States: Idle, Move, Attack, Flee, Use Special Ability
    - Clear transitions based on trigger conditions
-   - Predictable behavior patterns
 
-2. **Behavior Trees**:
-   - Used for complex tactical decisions
-   - Hierarchical organization of tasks
-   - Conditional execution branches
-   - Priority-based action selection
+2. **More Advanced Systems** (❓ implementation details uncertain):
+   - Possible behavior tree implementation for complex tactics
+   - Potential utility-based decision making for strategic choices
+   - Possible influence mapping for territory control assessment
 
-3. **Utility-Based AI**:
-   - Used for strategic decisions
-   - Actions scored based on utility value
-   - Considers multiple factors for decisions
-   - Adapts to changing battlefield conditions
-
-4. **Influence Maps**:
-   - Spatial representation of tactical value
-   - Used for territory control assessment
-   - Identifies choke points and vulnerable areas
-   - Guides placement of defensive structures
 
 Each AI personality (Easy, Medium, Hard) uses the same decision-making architecture but with different parameter sets that affect:
 - Aggressiveness (willingness to attack)
@@ -2537,7 +2516,7 @@ This modular approach allows for:
 </blockquote>
 </details>
 
-## GameNetwork
+# GameNetwork
 
 <details>
 <summary>GameNetwork (35+ files)</summary>
@@ -2661,7 +2640,7 @@ Multiplayer networking system handling connections, game synchronization, and on
                 │
                 ▼
 ┌───────────────────────────────┐
-│      Security Layer           │
+│      Security Layer           │❓
 │  (Encryption, Authentication) │
 └───────────────┬───────────────┘
                 │
@@ -2671,6 +2650,8 @@ Multiplayer networking system handling connections, game synchronization, and on
 │      (TCP/UDP Packets)        │
 └───────────────────────────────┘
 ```
+
+**Note**: This architectural model is derived from observation of available network files and RTS networking principles. The actual implementation may differ.
 
 The C&C Generals: Zero Hour network protocol implements a custom 5-layer stack:
 
@@ -3450,22 +3431,20 @@ Key metrics tracked by the monitoring system:
    - Thread Timing: Processing time for network operations
 
 The monitoring system includes visual indicators in the UI (connection quality icon), detailed graphs accessible through the console (~net_stats command), and comprehensive logging to NetworkLog.txt for post-session analysis. In development builds, additional tools allow packet inspection and replay for debugging complex network issues.
-</details>
-</blockquote>
+</details></blockquote>
 
 - 🌐 `GameNetwork/IPEnumeration.h` - Network adapter enumeration
-  - **Purpose**: Identify and list available network interfaces
-  - **Used by**: NetworkInterface.h, connection dialog
-  - **Dependencies**: Platform network libraries
+  - **Purpose**: 
+  - **Used by**: 
+  - **Dependencies**: 
   - **Key functions**: 
-    - `GetLocalAddresses()`: Get all local IP addresses
-    - `GetDefaultInterface()`: Get primary network interface
-    - `GetInterfaceName(InterfaceID id)`: Get human-readable adapter name
-    - `GetInterfaceType(InterfaceID id)`: Get connection type (Ethernet, WiFi, etc.)
-  - **Features**: Platform-independent interface detection, adapter information retrieval
+    - `GetLocalAddresses()`: 
+    - `GetDefaultInterface()`: 
+    - `GetInterfaceName(InterfaceID id)`:
+    - `GetInterfaceType(InterfaceID id)`: 
+  - **Features**: 
 
-<blockquote>
-<details>
+<blockquote><details>
 <summary>Packet Analysis Tools</summary>
 
 Development builds include built-in packet analysis tools for troubleshooting network issues:
@@ -3514,80 +3493,120 @@ These tools are only available in development builds and are essential for ident
 </blockquote>
 </details>
 
-## GameRenderer
+
+# GameRenderer
 
 <details>
 <summary>GameRenderer (50+ files)</summary>
 
-3D rendering system handling all visual presentation through DirectX 8.
+3D rendering system handling all visual presentation through DirectX.
 
-<blockquote>
-<details>
+
+
+
+<blockquote> <details>
 <summary>Core Rendering (10+ files)</summary>
 
-- 🔄 `GameRenderer/GameRenderer.h` - Main renderer interface
-  - **Purpose**: Provides abstract rendering interface for the game engine
-  - **Used by**: GameClient, GameEngine
-  - **Dependencies**: dx8wrapper.h, dx8renderer.h
-  - **Key functions**: 
-    - `Initialize()`: Set up rendering context
-    - `BeginScene()`: Start rendering a new frame
-    - `EndScene()`: Finish rendering and present the frame
-    - `Shutdown()`: Clean up rendering resources
+- 🔄 `GameRenderer/dx8/dx8wrapper.h`  
+- 🔄 `GameRenderer/dx8/dx8renderer.h`  
+- 🔄 `GameRenderer/dx8/dx8texman.h` 
+- 🔄 `GameRenderer/dx8/dx8vertexbuffer.h` 
+- 🔄 `GameRenderer/dx8/dx8indexbuffer.h` 
+- 🔄 `GameRenderer/dx8/dx8shader.h` 
+- 🔄 `GameRenderer/dx8/dx8polygonrenderer.h` 
 
-- 🔄 `GameRenderer/dx8/dx8wrapper.h` - DirectX 8 API wrapper
-  - **Purpose**: Abstract DirectX 8 functionality 
-  - **Used by**: GameRenderer and rendering components
-  - **Dependencies**: d3d8.h, d3dx8.h
-  - **Key functions**: 
-    - `Get_D3D_Device()`: Access DirectX device
-    - `D3D_SetRenderState()`: Change rendering parameters
-    - `D3D_Clear()`: Clear the render target
-    - `Set_Transform()`: Set transformation matrices
-  - **Design**: Wrapper pattern that simplifies DirectX API access
+</details> </blockquote>
 
-- 🔄 `GameRenderer/dx8/dx8renderer.h` - Primary rendering implementation
-  - **Purpose**: DirectX 8 implementation of renderer interface
-  - **Used by**: GameRenderer.h
-  - **Dependencies**: dx8wrapper.h, dx8texman.h, dx8vertexbuffer.h
+
+<blockquote> <details>
+<summary>DirectX 8 to 9 Conversion</summary>
+
+- 🔄 `GameRenderer/d3d8to9/d3d8to9.cpp`
+- 🔄 `GameRenderer/d3d8to9/d3d8to9_device.cpp`
+- 🔄 `GameRenderer/d3d8to9/d3d8to9_index_buffer.cpp`
+- 🔄 `GameRenderer/d3d8to9/d3d8to9_texture.cpp`
+- 🔄 `GameRenderer/d3d8to9/d3d8to9_vertex_buffer.cpp`
+
+</details></blockquote>
+
+<blockquote><details>
+<summary>Scene Architecture</summary>
+
+ **Note** the actual implementation includes additional complexity around scene registration, iteration, and render object management that isn't immediately apparent from the high-level architecture diagram. 
+
+```ascii
+┌───────────────────┐
+│  Game Logic       │
+│  (Scene Updates)  │
+└────────┬──────────┘
+         │
+         ▼
+┌───────────────────┐
+│   Scene Class     │◄───┐
+│  (scene.h/cpp)    │    │
+└────────┬──────────┘    │
+         │               │
+         ▼               │
+┌───────────────────┐    │
+│  RenderObjClass   │    │
+│  (rendobj.h/cpp)  │    │
+└────────┬──────────┘    │
+         │               │
+         ▼               │
+┌───────────────────┐    │
+│   W3D Scene       │    │
+│  Implementation   │────┘
+└───────────────────┘
+```
+
+- 🔄 `GameEngine/Scene/RenderObj.h` - Renderable object base class
+  - **Purpose**: Provide core functionality for any object that can be rendered
+  - **Used by**: Scene system, rendering pipeline
+  - **Dependencies**: W3DRenderDevice.h, Transform.h
+  - **Key functions**:
+    - `Draw()`: Render the object
+    - `GetBoundingSphere()`: Get object bounds
+    - `UpdateTransform()`: Update object position/rotation
+    - `OnAddedToScene()`: Handle scene attachment
+  - **Features**: Transform hierarchy, visibility culling, LOD support
+
+- 🔄 `GameEngine/Scene/Scene.h` - Scene graph management
+  - **Purpose**: Organize and manage collections of renderable objects
+  - **Used by**: Game view system, render pipeline
+  - **Dependencies**: RenderObj.h, SceneIterator.h
   - **Key functions**: 
-    - `Create_Render_State()`: Configure rendering state
-    - `Flush_Buffers()`: Process pending render operations
-    - `Draw_Triangles()`: Render primitives
-    - `Set_Shader()`: Apply shader effects
-</details>
-</blockquote>
+    - `Add(RenderObj* obj)`: Add object to scene
+    - `Remove(RenderObj* obj)`: Remove object from scene
+    - `Update()`: Process scene changes
+    - `CreateIterator()`: Create scene traversal iterator
+  - **Features**: Spatial organization, visibility determination
+
+- 🎮 `GameClient/W3DScene.h` - Game-specific scene implementation
+  - **Purpose**: Implement specialized scene behavior for RTS gameplay
+  - **Used by**: Game client, tactical view
+  - **Dependencies**: Scene.h, RenderObj.h
+  - **Key functions**:
+    - `UpdateView(Camera* cam)`: Update view parameters
+    - `RenderScene()`: Render current scene state
+    - `ProcessVisibility()`: Determine visible objects
+    - `HandleObjectChanges()`: Process object updates
+  - **Features**: RTS-optimized culling, specialized sorting
+This distributed architecture allows for separation between core rendering functionality and game-specific scene management needs while maintaining a cohesive scene graph system.
+
+
+</details></blockquote>
+
+<blockquote>
+<details>
+<summary>Shader System </summary>
 
 
 <blockquote>
 <details>
-<summary>Shader System (15+ files)</summary>
 
-- 🔄 `GameRenderer/dx8/dx8shader.h` - Shader management system
-  - **Purpose**: Manage and apply DirectX shader effects
-  - **Used by**: dx8renderer.h, material system
-  - **Dependencies**: d3d8.h, d3dx8effect.h
-  - **Key functions**: 
-    - `LoadShader(const char* filename)`: Load shader from file
-    - `ApplyShader(ShaderID id)`: Set shader as active
-    - `SetShaderParameter(ParamID id, const void* data)`: Set shader parameter
-    - `OptimizeShader(ShaderID id)`: Compile shader for target hardware
-  - **Features**: Effect parameter control, shader caching, hardware detection
+**Note**: This has not been verified yet, someone more compenent sign off on this 
 
-- 🔄 `GameRenderer/dx8/dx8shaderparam.h` - Shader parameter handling
-  - **Purpose**: Manage shader parameters and constants
-  - **Used by**: dx8shader.h, material system
-  - **Dependencies**: d3d8.h, d3dx8effect.h
-  - **Key functions**: 
-    - `SetVector(const char* name, Vector4 value)`: Set vector parameter
-    - `SetMatrix(const char* name, Matrix4x4 value)`: Set matrix parameter
-    - `SetTexture(const char* name, TextureID texture)`: Set texture parameter
-    - `CommitChanges()`: Apply all parameter changes
-  - **Design**: Parameter abstraction layer for shader control
-
-<blockquote>
-<details>
-<summary>Shader Pipeline Architecture</summary>
+<summary>Shader Pipeline Architecture </summary>
 
 ```ascii
 ┌───────────────────┐          ┌───────────────────┐
@@ -3622,31 +3641,27 @@ These tools are only available in development builds and are essential for ident
 The shader system manages DirectX 8 programmable shader effects through several stages:
 
 1. **Shader Development**:
-   - Written in HLSL (High Level Shader Language)
-   - Organized in .fx effect files combining multiple techniques
-   - Techniques for different quality levels and hardware capabilities
+   - Written in HLSL (.fx files)
+   - Multiple techniques for varied hardware/quality
 
 2. **Compilation**:
-   - Pre-compiled during build for common hardware targets
-   - Runtime compilation for unique hardware configurations
-   - Optimization based on detected hardware capabilities
+   - Pre-compile for common targets
+   - Runtime compile for unique configs
 
 3. **Parameter Management**:
-   - Material-specific parameters (diffuse color, specular power)
-   - Global parameters (time, view/projection matrices)
-   - Dynamic parameters updated per-frame or per-object
+   - Material-specific and global parameters
+   - Updated per-frame or per-object
 
 4. **Technique Selection**:
-   - Hardware capability detection
-   - Quality setting consideration
-   - Fallback paths for unsupported features
+   - Hardware detection + quality settings
 
 5. **Render State Integration**:
-   - Shader-driven render state changes
-   - State caching to minimize API calls
-   - Batch-friendly design for performance
+   - Shader-driven state changes
+   - State caching and batching
 
-The shader system supports both fixed-function fallbacks for older hardware and programmable shader paths for newer hardware, automatically selecting the appropriate technique based on hardware detection.
+Both fixed-function fallbacks and programmable paths are supported, auto-selecting features based on hardware detection.
+</details>
+</blockquote>
 </details>
 </blockquote>
 
@@ -3693,25 +3708,22 @@ The engine implements several specialized shader effects:
    - Tactical view enhancements
 
 Each shader category is optimized for its specific use case while sharing common code for efficiency. The shader system automatically selects appropriate techniques based on hardware capabilities and quality settings.
-</details>
-</blockquote>
-</details>
-</blockquote>
+</details></blockquote>
 
-<blockquote>
-<details>
+
+<blockquote><details>
 <summary>Resource Management (8+ files)</summary>
 
-- 🔄 `GameRenderer/dx8/dx8texman.h` - Texture management
-  - **Purpose**: Handle loading, caching and application of textures
-  - **Used by**: dx8renderer, material system
-  - **Dependencies**: d3d8.h, FileSystemEA.h
-  - **Key functions**: 
-    - `Load_Texture()`: Load texture from file
-    - `Apply_Texture()`: Bind texture for rendering
-    - `Release_Texture()`: Free texture resources
-    - `Preload_Texture_Set()`: Cache textures for upcoming use
-  - **Features**: Texture caching, mipmap generation, format conversion
+- 🔄 `GameRenderer/dx8/dx8texman.h` - DirectX 8 texture manager
+    - **Purpose**: Handle loading, caching, and management of texture resources
+    - **Used by**: DirectX 8 rendering subsystem
+    - **Dependencies**: dx8wrapper.h, texture.h
+    - **Key functions**:
+        - `Release_Textures()`: Free texture resources
+        - `Recreate_Textures()`: Rebuild texture resources
+        - `Add(DX8TextureTrackerClass*)`: Add texture to management system
+        - `Remove(TextureClass*)`: Remove texture from management
+    - **Features**: Texture resource tracking, release and recreation of textures
 
 - 🔄 `GameRenderer/dx8/dx8vertexbuffer.h` - Vertex data management
   - **Purpose**: Manage vertex buffers for efficient rendering
@@ -3733,11 +3745,10 @@ Each shader category is optimized for its specific use case while sharing common
     - `Update_Buffer()`: Modify index data
     - `Apply_Buffer()`: Use index buffer for rendering
   - **Design**: Complements vertex buffers for efficient mesh rendering
-</details>
-</blockquote>
 
-<blockquote>
-<details>
+</details></blockquote>
+
+<blockquote><details>
 <summary>Rendering Pipeline</summary>
 
 ```ascii
@@ -3783,11 +3794,9 @@ The renderer uses a multistage pipeline:
    - Frame presentation
    - Vsync and refresh management
    - Backbuffer swapping
-</details>
-</blockquote>
+</details></blockquote>
 
-<blockquote>
-<details>
+<blockquote><details>
 <summary>Specialized Rendering Systems</summary>
 
 - 🔄 `GameRenderer/dx8/dx8polygonrenderer.h` - Polygon rendering system
@@ -3817,19 +3826,19 @@ The renderer uses a multistage pipeline:
     - `End_List()`: Finalize command list
     - `Execute_List()`: Process stored commands
   - **Features**: Command sorting, state change optimization
-</details>
-</blockquote>
+</details></blockquote>
+
+
 </details>
 
-## Audio Systems
+# Audio Systems
 
 <details>
 <summary>Audio Systems (30+ files)</summary>
 
 Sound management and playback systems with dual implementation support (Miles Audio and OpenAL).
 
-<blockquote>
-<details>
+<blockquote><details>
 <summary>Audio Interface Layer (5+ files)</summary>
 
 - 🔊 `Common/GameAudio.h` - Main audio interface
@@ -3872,11 +3881,9 @@ Sound management and playback systems with dual implementation support (Miles Au
     - `PlayUnitSpeech(UnitType type, SpeechType speech)`: Play unit-specific line
     - `GetSpeechDuration(SpeechID id)`: Get voice line length
   - **Features**: Priority system for overlapping speech, language variants
-</details>
-</blockquote>
+</details></blockquote>
 
-<blockquote>
-<details>
+<blockquote><details>
 <summary>Miles Audio Implementation (8+ files)</summary>
 
 - 🔊 `MilesAudioDevice/MilesAudioManager.h` - Miles audio implementation
@@ -3892,12 +3899,10 @@ Sound management and playback systems with dual implementation support (Miles Au
 
 
 
-</details>
-</blockquote>
+</details></blockquote>
 
-<blockquote>
-<details>
-<summary>OpenAL Audio Implementation (12+ files)</summary>
+<blockquote><details>
+<summary>OpenAL Audio Implementation (5+ files)</summary>
 
 - 🔊 `OpenALAudioDevice/OpenALAudioManager.h` - OpenAL implementation
   - **Purpose**: Implementation of audio systems using OpenAL
@@ -3917,9 +3922,15 @@ Sound management and playback systems with dual implementation support (Miles Au
   - **Key functions**: 
     - `LoadWaveFile(const char* filename)`: Load WAV format
     - `LoadMP3File(const char* filename)`: Load MP3 format
-    - `ConvertToALFormat(AudioData* data)`: Convert to OpenAL format
-  - **Features**: Format detection, streaming support, memory management
+    
+- 🔊 `OpenALAudioDevice/dr_mp3.h` - MP3 decoding library
+  - **Purpose**: Decode MP3 audio files
 
+- 🔊 `OpenALAudioDevice/dr_wav.h` - WAV decoding library
+  - **Purpose**: Decode WAV audio files
+
+- 🔊 `OpenALAudioDevice/Bink/BinkVideoPlayer.h` - Video playback
+  - **Purpose**: Handle Bink video playback with audio integration
 
 <blockquote>
 <details>
@@ -4007,7 +4018,7 @@ Audio implementations can be selected at runtime based on system capabilities an
 </blockquote>
 </details>
 
-## Main System
+# Main System
 
 <details>
 <summary>Main (40+ files)</summary>
