@@ -69,16 +69,6 @@ First of all here's my personal ranking in terms of output quality:
 - GIMP with DDS plug-in (<https://www.gimp.org/> and <https://code.google.com/archive/p/gimp-dds/downloads>)
 - DirectXTex (<https://github.com/Microsoft/DirectXTex>)
 - DDS Converter (<http://www.ddsconverter.com/> but I'd rather you throw it deep into the sea)
-- Crunch (<https://github.com/Unity-Technologies/crunch/tree/unity/bin>) tied with Nvidia Texture Tools
-- Nvidia Texture Tools (NVTT, <https://github.com/castano/nvidia-texture-tools>)
-- Compressonator (<https://github.com/castano/nvidia-texture-tools>)
-- Nvidia Texture Tools for Adobe Photoshop (<https://developer.nvidia.com/nvidia-texture-tools-adobe-photoshop>)
-- Paint.Net (<https://www.getpaint.net/>)
-- ISPC Texture Compressor / Intel Texture Works Plugin for Photoshop
-  (<https://github.com/GameTechDev/ISPCTextureCompressor> / <https://github.com/GameTechDev/Intel-Texture-Works-Plugin>)
-- GIMP with DDS plug-in (<https://www.gimp.org/> and <https://code.google.com/archive/p/gimp-dds/downloads>)
-- DirectXTex (<https://github.com/Microsoft/DirectXTex>)
-- DDS Converter (<http://www.ddsconverter.com/> but I'd rather you throw it deep into the sea)
 
 To motivate you to switch from a different tool, let me detail the issues encountered with the different encoders (comparison
 images are in the spoiler below).
