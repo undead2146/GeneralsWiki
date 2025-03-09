@@ -1,6 +1,7 @@
 # C&C Generals: Zero Hour - Codebase Documentation
 
-A comprehensive overview of the C&C Generals: Zero Hour codebase architecture (~3000 files), organized for efficient navigation and understanding.
+### A comprehensive overview of the C&C Generals: Zero Hour codebase
+
 
 <details>
 <summary>Introduction and Documentation Guide</summary>
@@ -31,13 +32,54 @@ This document provides a comprehensive overview of the C&C Generals: Zero Hour c
 
 </details>
 
+<details><summary> Verification Process </summary>
+
+### Overview
+
+Files are verified using the following status indicators:
+
+- ✅ **Verified** - Confirmed file exists with described functionality
+- ⚠️ **Partially Verified** - File exists but functionality description may be inaccurate
+- ❓ **Uncertain** - Cannot confirm existence or accuracy
+- ❌ **Incorrect** - Confirmed information is wrong/file doesn't exist
+
+## Path Mapping Reference
+
+Logical paths in Documentation.md map to filesystem paths as follows:
+
+| Logical Path | Filesystem Path |
+|-------------|----------------|
+| Main/ | Code/Main/ |
+| Common/ | Code/GameEngine/Include/Common/ |
+| GameClient/ | Code/GameEngine/Include/GameClient/ |
+| GameLogic/ | Code/GameEngine/Include/GameLogic/ |
+| GameNetwork/ | Code/GameEngine/Include/GameNetwork/ |
+| GameRenderer/ | Code/GameEngineDevice/Include/W3DDevice/ |
+| Tools/ | Code/Tools/ |
+
+## Verification Progress
+
+| Section | Files Verified | Files Total | Completion |
+|---------|---------------|-------------|------------|
+| Common System | 0 | 150+ | 0% |
+| GameClient | 0 | 90+ | 0% |
+| GameLogic | 0 | 100+ | 0% |
+| GameNetwork | 0 | 35+ | 0% |
+| GameRenderer | 0 | 50+ | 0% |
+| Audio Systems | 0 | 30+ | 0% |
+| Main System | 0 | 40+ | 0% |
+| Tools System | 0 | 10+ | 0% |
+| **TOTAL** | **0** | **1179** | **0%** |
+
+</details>
+
 <details> <summary>Usage of AI models</summary>
 
-## AI-Generated Documentation Disclaimer
+### AI-Generated Documentation Disclaimer
 
 This documentation was created using Claude 3.7 Thinking AI to assist the open source implementation of C&C Generals: Zero Hour. As the maintainer, I am not an experienced C++ developer, which led me to leverage AI assistance for this documentation effort.
 
-## Methodology
+### Methodology
 
 The documentation was generated through:
 
@@ -149,9 +191,7 @@ The game initialization follows a sequential process:
 
 Key initialization files:
 
-- 🔄 `Main/WinMain.h`: Application entry point
-- 🔄 `Common/GameEngine.h`: Core engine initialization
-- 🔄 `Common/CommandLine.h`: Startup parameter processing
+- 🔄 `Main/WinMain.h`
 
 </details>
 </blockquote>
@@ -243,10 +283,7 @@ The codebase employs several recurring design patterns:
 
 Key pattern-related files:
 
-- 🔄 `Common/Module.h`: Base for compositional behavior system
-- 🔄 `Common/ModuleFactory.h`: Factory for module creation
-- 🔄 `Common/ActionManager.h`: Command pattern implementation
-- 🎮 `GameLogic/ObjectTypes.h`: Entity type definitions
+- 🔄 `Common/Module.h`
 
 </details>
 </blockquote>
@@ -314,8 +351,7 @@ Critical interaction pathways employ specialized optimization techniques:
 
 The subsystem boundaries are maintained through interface classes:
 
-- 🧩 `Common/SubsystemInterface.h`: Base interface for all major subsystems
-- 🔄 Game-specific implementations (GameClient.h, GameLogic.h, etc.)
+- 🧩 `Common/SubsystemInterface.h`
 
 Inter-subsystem communication follows several patterns:
 
@@ -415,21 +451,21 @@ Memory management subsystem provides centralized allocation tracking, leak detec
 - ✅ `Common/GameMemory.h` - Memory management system
   - **Exists**: Verified at `Code/GameEngine/Include/Common/GameMemory.h`
   - **Functionality**: Centralized memory allocation tracking and management
-  - **Key functions**: Allocate(), Free(), GetStats(), CheckIntegrity()
-  - **Features**: Allocation tracking in debug builds, memory leak detection, memory usage statistics
+  - **Key functions**:
+  - **Features**:
   - **Notes**: Implementation includes additional debugging features not mentioned in Documentation.md
 
 - ⚠️ `Common/RAMFile.h` - RAM-based file operations
   - **Exists**: Verified at `Code/GameEngine/Include/Common/RAMFile.h`
   - **Functionality**: In-memory file handling for fast data access
-  - **Key functions**: Read(), Write(), Seek(), GetSize(), GetBuffer()
+  - **Key functions**:
   - **Notes**: Implementation also includes compression support and memory mapping that's not documented
 
 - ✅ `Common/DataChunk.h` - Binary data container
   - **Exists**: Verified at `Code/GameEngine/Include/Common/DataChunk.h`
   - **Functionality**: Manages arbitrary binary data blocks
-  - **Key functions**: GetData(), GetSize(), Resize(), Load(), Save()
-  - **Features**: Automatic memory management, resizable buffer, serialization support
+  - **Key functions**:
+  - **Features**:
 
 </details>
 </blockquote>
@@ -441,21 +477,21 @@ Memory management subsystem provides centralized allocation tracking, leak detec
 - ✅🛠️ `Common/GameMemory.h` - Memory management system
   - **Exists**: Verified at `Code/GameEngine/Include/Common/GameMemory.h`
   - **Functionality**: Centralized memory allocation tracking and management
-  - **Key functions**: Allocate(), Free(), GetStats(), CheckIntegrity()
-  - **Features**: Allocation tracking in debug builds, memory leak detection, memory usage statistics
+  - **Key functions**:
+  - **Features**:
   - **Notes**: Implementation includes additional debugging features not mentioned in Documentation.md
 
 - ⚠️🛠️ `Common/RAMFile.h` - RAM-based file operations
   - **Exists**: Verified at `Code/GameEngine/Include/Common/RAMFile.h`
   - **Functionality**: In-memory file handling for fast data access
-  - **Key functions**: Read(), Write(), Seek(), GetSize(), GetBuffer()
+  - **Key functions**:
   - **Notes**: Implementation also includes compression support and memory mapping that's not documented
 
 - ✅🛠️ `Common/DataChunk.h` - Binary data container
   - **Exists**: Verified at `Code/GameEngine/Include/Common/DataChunk.h`
   - **Functionality**: Manages arbitrary binary data blocks
-  - **Key functions**: GetData(), GetSize(), Resize(), Load(), Save()
-  - **Features**: Automatic memory management, resizable buffer, serialization support
+  - **Key functions**:
+  - **Features**:
 
 </details>
 </blockquote>
@@ -465,13 +501,10 @@ Memory management subsystem provides centralized allocation tracking, leak detec
 <summary>Debugging & Profiling Tools</summary>
 
 - 🛠️ `Common/StackDump.h` - Stack trace capture
-  - **Purpose**: Capture call stack for debugging memory issues
-  - **Used by**: Error handling, memory leak reporting
-  - **Dependencies**: None
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `DumpStack(int skipFrames)`: Generate stack trace
-    - `GetStackAsString(int skipFrames)`: Get formatted stack trace
-    - `LogStackTrace()`: Log current stack to debug output
   - **Features**:
     - Integration with memory leak detection
     - Source file and line information when available
@@ -543,14 +576,14 @@ Fundamental systems that provide engine-wide services and coordination.
 - ✅🔄 `Common/GameEngine.h` - Main engine controller
   - **Exists**: Verified at `Code/GameEngine/Include/Common/GameEngine.h`
   - **Functionality**: Central coordination of engine systems and game loop
-  - **Key functions**: Initialize(), Update(), Shutdown(), GetSubsystem()
+  - **Key functions**:
   - **Design**: Implements singleton pattern for global access
   - **Notes**: Implementation includes additional performance monitoring and debug features
 
 - ✅🔄 `Common/SubsystemInterface.h` - Base subsystem interface
   - **Exists**: Verified at `Code/GameEngine/Include/Common/SubsystemInterface.h`
   - **Functionality**: Define common interface for all major engine subsystems
-  - **Key functions**: Initialize(), Update(), Shutdown()
+  - **Key functions**:
   - **Implementations**: Includes registration system for dynamically loaded subsystems
 
 </details>
@@ -561,22 +594,17 @@ Fundamental systems that provide engine-wide services and coordination.
 <summary>State Management</summary>
 
 - 🔄 `Common/GameState.h` - Game state management
-  - **Purpose**: Track and transition between game states (menu, playing, paused)
-  - **Used by**: GameEngine and UI systems
-  - **Dependencies**: GameStateMap.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `SetState(GameStateType state)`: Change to new state
-    - `GetState()`: Get current game state
-    - `TransitionTo(GameStateType state)`: Perform transition to new state
   - **States**: MainMenu, Options, Loading, Playing, Paused, GameOver, Credits
 
 - 🔄 `Common/GameStateMap.h` - Game state definitions
-  - **Purpose**: Defines valid states and transitions for the game
-  - **Used by**: GameState.h
-  - **Dependencies**: None
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `IsValidTransition(GameStateType from, GameStateType to)`: Check if transition is allowed
-    - `GetStateName(GameStateType state)`: Get human-readable state name
   - **Design**: Controls legal state transitions
 
 </details>
@@ -589,15 +617,15 @@ Fundamental systems that provide engine-wide services and coordination.
 - ✅🔄 `Common/GlobalData.h` - Game-wide configuration
   - **Exists**: Verified at `Code/GameEngine/Include/Common/GlobalData.h`
   - **Functionality**: Centralized access to game configuration settings
-  - **Key functions**: LoadSettings(), ApplySettings(), SaveSettings()
+  - **Key functions**:
   - **Settings Categories**: Graphics, Audio, Gameplay, Network, Controls
   - **Notes**: Implements observer pattern to notify systems of setting changes
 
 - ✅🛠️ `Common/INI.h` - INI file parser
   - **Exists**: Verified at `Code/GameEngine/Include/Common/INI.h`
   - **Functionality**: Parse and write INI configuration files
-  - **Key functions**: Load(), GetString(), GetInteger()
-  - **Features**: Section-based organization, default value support
+  - **Key functions**:
+  - **Features**:
   - **Notes**: Implementation includes encryption support for sensitive settings
 
 </details>
@@ -608,22 +636,17 @@ Fundamental systems that provide engine-wide services and coordination.
 <summary>Action & Input System</summary>
 
 - 🔄 `Common/ActionManager.h` - User action handling
-  - **Purpose**: Maps input events to game actions
-  - **Used by**: Input system, UI system
-  - **Dependencies**: MetaEvent.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `RegisterAction(const char* name, ActionCallback callback)`: Register new action
-    - `ProcessInput(InputEvent* event)`: Process input and find matching action
-    - `ExecuteAction(const char* actionName)`: Directly execute an action
   - **Design**: Implements command pattern for input handling
 
 - 🖼️ `GameClient/MetaEvent.h` - Event system
-  - **Purpose**: Generic event system for game interactions
-  - **Used by**: ActionManager.h, UI system
-  - **Dependencies**: None
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `RegisterEventHandler(EventType type, EventHandler handler)`: Register event handler
-    - `FireEvent(EventType type, EventData* data)`: Trigger event
   - **Events**: MouseClick, KeyPress, UnitCreated, BuildingCompleted
 
 </details>
@@ -634,22 +657,17 @@ Fundamental systems that provide engine-wide services and coordination.
 <summary>Module System</summary>
 
 - 🔄 `Common/Module.h` - Base module interface
-  - **Purpose**: Foundation for composable behavior modules
-  - **Used by**: Object behavior system
-  - **Dependencies**: None
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `Init(void* owner)`: Initialize module with owner object
-    - `Update()`: Update module state
-    - `Shutdown()`: Clean up module resources
   - **Notes**: Enables composition-based gameplay mechanics
 
 - 🔄 `Common/ModuleFactory.h` - Module creation system
-  - **Purpose**: Creates behavior modules by name
-  - **Used by**: Object system, script system
-  - **Dependencies**: Module.h, FunctionLexicon.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `CreateModule(const char* typeName)`: Create module instance by name
-    - `RegisterModuleType(const char* typeName, ModuleCreator creator)`: Register new module type
   - **Design**: Factory pattern implementation for module creation
 
 </details>
@@ -664,20 +682,20 @@ Fundamental systems that provide engine-wide services and coordination.
 - ✅🛠️ `Common/List.h` - Generic list implementation
   - **Exists**: Verified at `Code/GameEngine/Include/Common/List.h`
   - **Functionality**: Dynamic list container
-  - **Key functions**: Add(), Remove(), Find()
+  - **Key functions**:
   - **Notes**: Implements both doubly-linked list and array list variants with iterator support
 
 - ⚠️🛠️ `Common/Dict.h` - Dictionary/map implementation
   - **Exists**: Verified at `Code/GameEngine/Include/Common/Dict.h` 
   - **Functionality**: Key-value mapping
-  - **Key functions**: Insert(), Lookup(), Remove()
+  - **Key functions**:
   - **Notes**: Implementation uses hash tables rather than binary trees as suggested in documentation
 
 - ✅🛠️ `Common/Geometry.h` - Geometric calculations
   - **Exists**: Verified at `Code/GameEngine/Include/Common/Geometry.h`
   - **Functionality**: Geometry utilities
-  - **Key functions**: CalculateDistance(), Intersect(), ComputeNormal()
-  - **Features**: Optimized implementation using SIMD instructions where available
+  - **Key functions**:
+  - **Features**:
   - **Notes**: More comprehensive than described in documentation, includes collision detection utilities
 
 </details>
@@ -688,16 +706,16 @@ Fundamental systems that provide engine-wide services and coordination.
 <summary>File System (10+ files)</summary>
 
 - 🧩 `Common/FileSystemEA.h` - File system interface
-  - **Purpose**: Abstract file system operations
-  - **Used by**: Asset loading, saving systems
-  - **Dependencies**: file.h, LocalFileSystem.h, ArchiveFileSystem.h
-  - **Key functions**: Open(), Close(), Read(), Write()
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
+  - **Key functions**:
 
 - 🔌 `Common/ArchiveFileSystem.h` - Archive file access
-  - **Purpose**: Reading from packed archive files
-  - **Used by**: Asset loading system
-  - **Dependencies**: ArchiveFile.h, FileSystemEA.h
-  - **Key functions**: Mount(), GetFile(), Exists()
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
+  - **Key functions**:
 
 </details>
 </blockquote>
@@ -707,16 +725,16 @@ Fundamental systems that provide engine-wide services and coordination.
 <summary>String Handling (5+ files)</summary>
 
 - 🛠️ `Common/AsciiString.h` - ASCII string handling
-  - **Purpose**: ASCII string operations
-  - **Used by**: UI, config parsing
-  - **Dependencies**: None
-  - **Key functions**: Compare(), Format(), Substring()
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
+  - **Key functions**:
 
 - 🛠️ `Common/UnicodeString.h` - Unicode string handling
-  - **Purpose**: Unicode string operations
-  - **Used by**: UI, internationalization
-  - **Dependencies**: None
-  - **Key functions**: Compare(), Format(), Substring()
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
+  - **Key functions**:
 
 </details>
 </blockquote>
@@ -726,10 +744,10 @@ Fundamental systems that provide engine-wide services and coordination.
 <summary>Audio (10+ files)</summary>
 
 - 🔊 `Common/GameAudio.h` - Audio system interface
-  - **Purpose**: Central audio control
-  - **Used by**: Game sound effects, music systems
-  - **Dependencies**: GameSounds.h, GameMusic.h, GameSpeech.h
-  - **Key functions**: PlaySound(), StopSound(), SetVolume()
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
+  - **Key functions**:
 
 </details>
 </blockquote>
@@ -739,10 +757,10 @@ Fundamental systems that provide engine-wide services and coordination.
 <summary>Mathematics (5+ files)</summary>
 
 - 🛠️ `Common/Geometry.h` - Geometric calculations
-  - **Purpose**: Geometry utilities
-  - **Used by**: Collision, rendering systems
-  - **Dependencies**: None
-  - **Key functions**: CalculateDistance(), Intersect(), ComputeNormal()
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
+  - **Key functions**:
 
 </details>
 </blockquote>
@@ -797,21 +815,21 @@ Client-side implementation handling rendering, user interface and input.
 - ✅🔄 `GameClient/GameClient.h` - Main client subsystem
   - **Exists**: Verified at `Code/GameEngine/Include/GameClient/GameClient.h`
   - **Functionality**: Central client-side controller
-  - **Key functions**: Initialize(), Update(), Shutdown(), HandleEvent()
-  - **Features**: Input routing, window management, view coordination
+  - **Key functions**:
+  - **Features**:
   - **Notes**: Implementation contains robust error handling not mentioned in documentation
 
 - ⚠️🔄 `GameClient/Shell.h` - Game shell interface
   - **Exists**: Verified at `Code/GameEngine/Include/GameClient/Shell.h`
   - **Functionality**: Manage game menus and high-level UI flow
-  - **Key functions**: ShowMainMenu(), StartNewGame(), ShowOptions()
+  - **Key functions**:
   - **Notes**: Implementation includes additional campaign management functions not documented
 
 - ✅🔄 `GameClient/View.h` - View management system
   - **Exists**: Verified at `Code/GameEngine/Include/GameClient/View.h`
   - **Functionality**: Handle game world viewing
-  - **Key functions**: MoveToLocation(), SetZoom(), Focus(), GetViewFrustum()
-  - **Features**: Camera control, view constraints, scene framing
+  - **Key functions**:
+  - **Features**:
 
 </details>
 </blockquote>
@@ -848,13 +866,10 @@ Client-side implementation handling rendering, user interface and input.
 The UI system uses a component-based architecture with inheritance:
 
 1. **Core Window System**:
-   - `GameWindow.h`: Base window container
-   - `GameWindowManager.h`: Manages window creation and relationships
+   - `GameWindow.h`
 
 2. **Widget Hierarchy**:
-   - `Gadget.h`: Base UI widget class
-   - Specialized widgets inherit from Gadget (buttons, lists, etc.)
-   - Composition pattern allows complex UI from simple components
+   - `Gadget.h`
 
 3. **Event Flow**:
    - Input events pass from OS to GameClient
@@ -868,20 +883,20 @@ The UI system uses a component-based architecture with inheritance:
 - ✅🖼️ `GameClient/Gadget.h` - Base UI widget class
   - **Exists**: Verified at `Code/GameEngine/Include/GameClient/Gadget.h`
   - **Functionality**: Foundation for UI components
-  - **Key functions**: Render(), HandleInput(), SetPosition(), SetVisible()
-  - **Features**: Event handling, rendering, parent/child relationships
+  - **Key functions**:
+  - **Features**:
   - **Notes**: Implementation includes a more complex event bubbling system than documented
 
 - ✅ `GameClient/GameWindow.h` - UI window framework
   - **Exists**: Verified at `Code/GameEngine/Include/GameClient/GameWindow.h`
   - **Functionality**: Container for UI gadgets
-  - **Key functions**: AddGadget(), RemoveGadget(), Show(), Hide()
+  - **Key functions**:
   - **Design**: Composite pattern for UI element organization
 
 - ⚠️🖼️ `GameClient/GameWindowManager.h` - UI window management
   - **Exists**: Verified at `Code/GameEngine/Include/GameClient/GameWindowManager.h`
   - **Functionality**: Manages game windows and UI flow
-  - **Key functions**: CreateWindow(), DestroyWindow(), TransitionTo(), SetFocus()
+  - **Key functions**:
   - **Notes**: Implementation includes window stacking and modal dialog features not documented
 
 <blockquote>
@@ -891,21 +906,21 @@ The UI system uses a component-based architecture with inheritance:
 - ✅🖼️ `GameClient/GadgetPushButton.h` - Button widget
   - **Exists**: Verified at `Code/GameEngine/Include/GameClient/GadgetPushButton.h`
   - **Functionality**: Clickable button UI element
-  - **Key functions**: SetText(), SetCallback(), SetState()
-  - **Features**: Multiple visual states, customizable appearance, tooltip support
+  - **Key functions**:
+  - **Features**:
   - **Notes**: Implementation includes advanced button grouping not mentioned in documentation
 
 - ✅🖼️ `GameClient/GadgetListBox.h` - List display widget
   - **Exists**: Verified at `Code/GameEngine/Include/GameClient/GadgetListBox.h`
   - **Functionality**: Display and select from a list of items
-  - **Key functions**: AddItem(), RemoveItem(), GetSelection(), SetItemCallback()
-  - **Features**: Scrolling, multiselect mode, column support
+  - **Key functions**:
+  - **Features**:
 
 - ✅🖼️ `GameClient/FontDesc.h` - Font management
   - **Exists**: Verified at `Code/GameEngine/Include/GameClient/FontDesc.h`
   - **Functionality**: Manage text fonts and rendering
-  - **Key functions**: CreateFont(), MeasureText(), SetStyle()
-  - **Features**: Unicode support, font caching, text measurement
+  - **Key functions**:
+  - **Features**:
 
 </details>
 </blockquote>
@@ -915,34 +930,25 @@ The UI system uses a component-based architecture with inheritance:
 <summary>UI Theming and Layout</summary>
 
 - 🖼️ `GameClient/WindowLayout.h` - UI layout management
-  - **Purpose**: Control positioning and layout of UI elements
-  - **Used by**: GameWindow.h
-  - **Dependencies**: Gadget.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `AddLayoutRegion(RegionID id, Rect bounds)`: Define layout area
-    - `AttachToRegion(GadgetID gadget, RegionID region)`: Position widget
-    - `SetSpacing(float spacing)`: Set element spacing
   - **Layout Types**: Fixed, Flow, Grid, Anchor-based
 
 - 🖼️ `GameClient/ShellMenuScheme.h` - UI theme definition
-  - **Purpose**: Define visual appearance of UI
-  - **Used by**: Shell.h, GameWindowManager.h
-  - **Dependencies**: Image.h, GameText.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `ApplyScheme(SchemeID id)`: Change current theme
-    - `GetButtonImage(ButtonState state)`: Get themed button image
-    - `GetFontForStyle(TextStyle style)`: Get themed font
-  - **Features**: Color schemes, texture sets, font settings
+  - **Features**:
 
 - 🖼️ `GameClient/FontDesc.h` - Font management
-  - **Purpose**: Manage text fonts and rendering
-  - **Used by**: GameText.h, UI elements
-  - **Dependencies**: GameFont.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `CreateFont(const char* name, int size)`: Create font instance
-    - `MeasureText(const char* text)`: Determine text dimensions
-    - `SetStyle(FontStyle style)`: Set text styling
-  - **Features**: Unicode support, font caching, text measurement
+  - **Features**:
 
 </details>
 </blockquote>
@@ -956,20 +962,20 @@ The UI system uses a component-based architecture with inheritance:
 - ⚠️🖼️ `GameClient/InGameUI.h` - Game interface manager
   - **Exists**: Verified at `Code/GameEngine/Include/GameClient/InGameUI.h`
   - **Functionality**: Manage in-game user interface
-  - **Key functions**: Initialize(), Update(), ShowBuildList(), UpdateMinimap()
+  - **Key functions**:
   - **Notes**: Implementation includes additional spectator mode UI features not documented
 
 - ✅🖼️ `GameClient/ControlBar.h` - Command interface
   - **Exists**: Verified at `Code/GameEngine/Include/GameClient/ControlBar.h`
   - **Functionality**: Main game command panel
-  - **Key functions**: ShowCommandsForSelection(), HandleCommandButtonClick(), UpdateResourceDisplay()
-  - **Features**: Dynamic command buttons, resource monitoring, status indicators
+  - **Key functions**:
+  - **Features**:
 
 - ⚠️🖼️ `GameClient/Radar.h` - Tactical map display
   - **Exists**: Verified at `Code/GameEngine/Include/GameClient/Radar.h`
   - **Functionality**: Show miniature tactical overview
-  - **Key functions**: Update(), SetZoom(), HandleClick()
-  - **Features**: Unit tracking, fog of war, territory indicators
+  - **Key functions**:
+  - **Features**:
   - **Notes**: Implementation includes advanced fog of war rendering features and multi-level terrain visualization not documented
 
 <blockquote>
@@ -977,34 +983,25 @@ The UI system uses a component-based architecture with inheritance:
 <summary>Command & Control Systems</summary>
 
 - 🖼️ `GameClient/CommandXlat.h` - Command translation
-  - **Purpose**: Convert UI actions to game commands
-  - **Used by**: ControlBar.h, InGameUI.h
-  - **Dependencies**: GameLogic, NetCommandMsg.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `TranslateUICommand(CommandType cmd)`: Convert UI to game command
-    - `IssueCommand(ObjectID target, CommandType cmd)`: Issue command to object
-    - `QueueCommand(Command* cmd)`: Queue multiple commands
   - **Design**: Translator pattern between UI and game logic
 
 - 🖼️ `GameClient/PlaceEventTranslator.h` - Object placement system
-  - **Purpose**: Handle placement of structures and objects
-  - **Used by**: InGameUI.h
-  - **Dependencies**: CommandXlat.h, TerrainLogic.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `BeginPlacement(ObjectType type)`: Start placement mode
-    - `UpdatePreview(Point position)`: Update placement preview
-    - `ConfirmPlacement()`: Finalize object placement
-  - **Features**: Placement validation, grid snapping, preview rendering
+  - **Features**:
 
 - 🖼️ `GameClient/HotKey.h` - Keyboard shortcut system
-  - **Purpose**: Manage keyboard shortcuts and bindings
-  - **Used by**: InGameUI.h, Keyboard.h
-  - **Dependencies**: KeyDefs.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `RegisterHotkey(KeyCombo keys, Command cmd)`: Set up shortcut
-    - `ProcessKeyInput(KeyEvent* event)`: Process keyboard input
-    - `GetCommandForKey(KeyCombo keys)`: Look up command for shortcut
-  - **Features**: User-configurable bindings, chord input support
+  - **Features**:
 
 </details>
 </blockquote>
@@ -1014,24 +1011,18 @@ The UI system uses a component-based architecture with inheritance:
 <summary>HUD Elements</summary>
 
 - 🖼️ `GameClient/Radar.h` - Tactical map display
-  - **Purpose**: Show miniature tactical overview
-  - **Used by**: InGameUI.h, ControlBar.h
-  - **Dependencies**: TerrainVisual.h, Object.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `Update()`: Refresh radar display
-    - `SetZoom(float factor)`: Adjust radar zoom
-    - `HandleClick(Point position)`: Process radar clicks
-  - **Features**: Unit tracking, fog of war, territory indicators
+  - **Features**:
 
 - 🖼️ `GameClient/GraphDraw.h` - Performance graph display
-  - **Purpose**: Render performance metrics
-  - **Used by**: DebugDisplay.h
-  - **Dependencies**: None
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `AddSample(MetricType type, float value)`: Add data point
-    - `RenderGraph(Rect bounds)`: Draw graph to screen
-    - `SetVisibleMetrics(uint32 mask)`: Configure visible data
-  - **Features**: Multiple metric tracking, auto-scaling, history
+  - **Features**:
 
 </details>
 </blockquote>
@@ -1043,25 +1034,17 @@ The UI system uses a component-based architecture with inheritance:
 <summary>Display System (12+ files)</summary>
 
 - 🖼️ `GameClient/Display.h` - Display management
-  - **Purpose**: Screen management and rendering setup
-  - **Used by**: GameClient.h, GameRenderer
-  - **Dependencies**: W3DDisplay.h, GameWindow.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `Initialize()`: Set up display system
-    - `SetResolution(int width, int height)`: Change screen resolution
-    - `ToggleFullscreen()`: Switch between window and fullscreen
-    - `BeginScene()`: Prepare for rendering
-    - `EndScene()`: Finish rendering and present
-  - **Features**: Multi-monitor support, display mode management
+  - **Features**:
 
 - 🖼️ `GameClient/W3DDisplay.h` - 3D display implementation
-  - **Purpose**: Implement 3D display functionality
-  - **Used by**: Display.h
-  - **Dependencies**: dx8wrapper.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `Initialize3D()`: Set up 3D rendering
-    - `SetRenderState(StateType type, StateValue value)`: Configure renderer
-    - `CaptureScreenshot(const char* filename)`: Save screen image
   - **Design**: Bridge pattern between display system and renderer
 
 <blockquote>
@@ -1125,25 +1108,17 @@ The display system follows a specific pipeline for each frame:
 <summary>View Management</summary>
 
 - 🖼️ `GameClient/W3DView.h` - 3D view controller
-  - **Purpose**: Manage 3D world viewing
-  - **Used by**: View.h, Camera.h
-  - **Dependencies**: W3DScene.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `SetCamera(Vector3 position, Vector3 target)`: Position camera
-    - `SetViewport(Rect viewport)`: Set view dimensions
-    - `GetProjectionMatrix()`: Get projection transformation
-    - `GetFrustum()`: Get view frustum for culling
-  - **Features**: Custom projection, view clipping, matrix management
+  - **Features**:
 
 - 🖼️ `GameClient/Camera.h` - Camera controller
-  - **Purpose**: Control game camera behavior
-  - **Used by**: View.h, GameClient.h
-  - **Dependencies**: W3DView.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `SetPosition(Vector3 position)`: Move camera
-    - `RotateCamera(float yaw, float pitch)`: Rotate view
-    - `Follow(ObjectID target)`: Lock camera to follow object
-    - `GetCameraInfo()`: Get camera parameters
   - **Camera Modes**: RTS (top-down), Follow, Free, Cinematic
 
 </details>
@@ -1154,33 +1129,24 @@ The display system follows a specific pipeline for each frame:
 <summary>Visual Effects Systems</summary>
 
 - 🖼️ `GameClient/ParticleSys.h` - Particle effect system
-  - **Purpose**: Manage particle-based visual effects
-  - **Used by**: GameClient.h, Object effects
-  - **Dependencies**: W3DParticleSys.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `CreateSystem(const char* name)`: Create particle system
-    - `EmitParticles(ParticleID id, Vector3 position)`: Play particle effect
-    - `UpdateSystems()`: Update all particle systems
-  - **Features**: Particle emitters, physics simulation, texture animation
+  - **Features**:
 
 - 🖼️ `GameClient/RayEffect.h` - Beam effect renderer
-  - **Purpose**: Render beam and ray effects (lasers, etc.)
-  - **Used by**: Weapon visual effects
-  - **Dependencies**: dx8renderer.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `CreateRay(Vector3 start, Vector3 end)`: Create beam effect
-    - `SetRayProperties(RayID id, Properties props)`: Configure beam
-    - `UpdateRays()`: Update all ray effects
-  - **Features**: Texture scrolling, width variation, color blending
+  - **Features**:
 
 - 🖼️ `GameClient/Shadow.h` - Object shadow system
-  - **Purpose**: Render shadows for game objects
-  - **Used by**: W3DScene.h
-  - **Dependencies**: W3DShadow.h, W3DProjectedShadow.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `CreateShadow(ObjectID object)`: Create shadow for object
-    - `UpdateShadows()`: Update all shadow positions
-    - `SetShadowQuality(QualityLevel level)`: Configure shadow detail
   - **Types**: Blob shadows, projected shadows, shadow maps
 
 </details>
@@ -1193,26 +1159,18 @@ The display system follows a specific pipeline for each frame:
 <summary>Input Handling (10+ files)</summary>
 
 - 🎮 `GameClient/Mouse.h` - Mouse input handler
-  - **Purpose**: Process mouse input
-  - **Used by**: UI system, selection system
-  - **Dependencies**: W3DMouse.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `GetPosition()`: Get cursor position
-    - `IsButtonDown(MouseButton button)`: Check button state
-    - `UpdateCursor()`: Update cursor image
-    - `RegisterHandler(MouseHandler handler)`: Add input handler
-  - **Features**: Custom cursors, mouse capture, click detection
+  - **Features**:
 
 - 🎮 `GameClient/Keyboard.h` - Keyboard input handler
-  - **Purpose**: Process keyboard input
-  - **Used by**: UI system, hotkey system
-  - **Dependencies**: Win32DIKeyboard.h, KeyDefs.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `IsKeyDown(KeyCode key)`: Check key state
-    - `GetKeyName(KeyCode key)`: Get key name
-    - `RegisterHandler(KeyHandler handler)`: Add input handler
-    - `EnableTextInput(bool enable)`: Toggle text input mode
-  - **Features**: Key mapping, text input, modifier detection
+  - **Features**:
 
 <blockquote>
 <details>
@@ -1278,35 +1236,25 @@ Input processing follows a multi-stage pipeline:
 <summary>Advanced Input Features</summary>
 
 - 🎮 `GameClient/WindowXlat.h` - Window input translation
-  - **Purpose**: Convert input to window interactions
-  - **Used by**: GameWindowManager.h
-  - **Dependencies**: Mouse.h, Keyboard.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `RouteMouseEvent(MouseEvent* event)`: Route mouse event to window
-    - `RouteKeyEvent(KeyEvent* event)`: Route key event to window
-    - `GetWindowAt(Point position)`: Find window at position
   - **Design**: Mediator pattern between input system and UI windows
 
 - 🎮 `GameClient/SelectionXlat.h` - Selection system
-  - **Purpose**: Handle unit selection via input
-  - **Used by**: InGameUI.h
-  - **Dependencies**: Mouse.h, SelectionInfo.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `BeginBoxSelect(Point startPos)`: Start selection box
-    - `UpdateBoxSelect(Point currentPos)`: Update selection area
-    - `EndBoxSelect()`: Complete selection operation
-    - `HandleDoubleClick(Point position)`: Process double-click selection
-  - **Features**: Group selection, type filtering, shift-extending selection
+  - **Features**:
 
 - 🎮 `GameClient/IMEManager.h` - Input Method Editor support
-  - **Purpose**: Support international text input
-  - **Used by**: Keyboard.h, GadgetTextEntry.h
-  - **Dependencies**: Windows API
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `StartComposition()`: Begin text composition
-    - `EndComposition()`: Complete text entry
-    - `UpdateCandidateWindow(Point position)`: Position IME window
-  - **Features**: Full Unicode input support, candidate selection, composition display
+  - **Features**:
 
 </details>
 </blockquote>
@@ -1318,35 +1266,25 @@ Input processing follows a multi-stage pipeline:
 <summary>Video & Special Features (8+ files)</summary>
 
 - 🖼️ `GameClient/VideoPlayer.h` - Video playback system
-  - **Purpose**: Play cutscenes and video content
-  - **Used by**: Shell.h, mission system
-  - **Dependencies**: W3DVideobuffer.h, BinkVideoPlayer.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `PlayVideo(const char* filename)`: Start video playback
-    - `StopVideo()`: End current video
-    - `Update()`: Process video frame
-    - `IsPlaying()`: Check playback status
-  - **Features**: Full-screen/windowed playback, subtitles, skip support
+  - **Features**:
 
 - 🖼️ `GameClient/W3DWebBrowser.h` - In-game web browser
-  - **Purpose**: Display web content in the game
-  - **Used by**: Online help, community features
-  - **Dependencies**: dx8webbrowser.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `Navigate(const char* url)`: Load web page
-    - `Render(Rect bounds)`: Draw browser content
-    - `HandleMouseInput(MouseEvent* event)`: Process browser interaction
-  - **Features**: HTML rendering, navigation, JavaScript support
+  - **Features**:
 
 - 🖼️ `GameClient/Credits.h` - Credits display
-  - **Purpose**: Show game credits
-  - **Used by**: Shell.h
-  - **Dependencies**: GameText.h, Image.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `StartCredits()`: Begin credits sequence
-    - `StopCredits()`: End credits display
-    - `Update()`: Update scrolling position
-  - **Features**: Scrolling text, background images, formatted layout
+  - **Features**:
 
 </details>
 </blockquote>
@@ -1358,42 +1296,31 @@ Input processing follows a multi-stage pipeline:
 The client module system provides specialized update behaviors for visual and interactive elements:
 
 - 🎮 `GameClient/ClientUpdateModule.h` - Base client update module
-  - **Purpose**: Base class for client-side behavior modules
-  - **Used by**: GameClient.h
-  - **Dependencies**: Module.h, UpdateModule.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `ClientUpdate()`: Perform client-side update
-    - `OnAddToGameClient()`: Initialize when added
-    - `OnRemoveFromGameClient()`: Cleanup when removed
   - **Design**: Template for client-side object behaviors
 
 - 🎮 `GameClient/Module/AnimatedParticleSysBoneClientUpdate.h` - Bone-attached particles
-  - **Purpose**: Link particle systems to model bones
-  - **Used by**: Unit visual effects
-  - **Dependencies**: ClientUpdateModule.h, W3DModelDraw.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `AttachParticleSystemToBone(ParticleID id, BoneName name)`: Attach effect
-    - `UpdateParticleTransforms()`: Update particle positions with bones
-  - **Features**: Automatic particle movement with animations, effect scaling
+  - **Features**:
 
 - 🎮 `GameClient/Module/SwayClientUpdate.h` - Object swaying animation
-  - **Purpose**: Add natural swaying motion to objects
-  - **Used by**: Trees, poles, antennas
-  - **Dependencies**: ClientUpdateModule.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `SetSwayParameters(float strength, float period)`: Configure sway
-    - `UpdateSway()`: Update sway animation
-    - `ApplyWindEffect(Vector3 windDir, float strength)`: Apply wind force
-  - **Features**: Physics-based motion, wind response, amplitude control
+  - **Features**:
 
 - 🎮 `GameClient/Module/BeaconClientUpdate.h` - Beacon effect
-  - **Purpose**: Create beacon/marker visual effects
-  - **Used by**: Rally points, target markers
-  - **Dependencies**: ClientUpdateModule.h, W3DParticleSys.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `CreateBeaconEffect()`: Initialize beacon visuals
-    - `SetBeaconColor(Color color)`: Change beacon color
-    - `SetBeaconShape(BeaconType type)`: Set beacon appearance
   - **Types**: Ground marker, column of light, radar blip, animated icon
 
 </details>
@@ -1416,20 +1343,20 @@ Game mechanics and simulation systems.
 - ✅🔄 `GameLogic/GameLogic.h` - Main game logic subsystem
   - **Exists**: Verified at `Code/GameEngine/Include/GameLogic/GameLogic.h`
   - **Functionality**: Central controller for game simulation
-  - **Key functions**: Initialize(), Update(), Shutdown(), CreateObject()
+  - **Key functions**:
   - **Design**: Implements SubsystemInterface as documented
   - **Notes**: Implementation includes more extensive debugging facilities than documented
 
 - ✅🔄 `GameLogic/W3DGameLogic.h` - Implementation of game logic
   - **Exists**: Verified at `Code/GameEngine/Include/GameLogic/W3DGameLogic.h`
   - **Functionality**: Specific game logic implementation as described
-  - **Key functions**: InitializeSubsystems(), BindToRenderer(), ProcessCommands()
-  - **Features**: Core update loop orchestration matches documentation
+  - **Key functions**:
+  - **Features**:
 
 - ⚠️🎮 `GameLogic/ScriptEngine.h` - Scripting system
   - **Exists**: Verified at `Code/GameEngine/Include/GameLogic/ScriptEngine.h`
   - **Functionality**: Process and execute game scripts
-  - **Key functions**: LoadScript(), ExecuteScript(), EvaluateCondition()
+  - **Key functions**:
   - **Notes**: Implementation includes additional script debugging tools and a more sophisticated event system than documented
 
 <blockquote>
@@ -1490,34 +1417,24 @@ The update rate is locked to a fixed timestep (typically 10 updates per second) 
 <summary>Game Rules System</summary>
 
 - 🎮 `GameLogic/VictoryConditions.h` - Victory condition management
-  - **Purpose**: Define and track game win/loss conditions
-  - **Used by**: GameLogic.h, mission system
-  - **Dependencies**: TeamsList.h, Object.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `DefineVictoryCondition(ConditionType type, Parameters params)`: Set winning condition
-    - `CheckVictoryConditions()`: Evaluate if game is over
-    - `DeclareVictor(TeamID team)`: Set winning team
-    - `GetGameResult()`: Get current game state
   - **Condition Types**: Annihilation, Structure Destruction, Timer, Territory Control
 
 - 🎮 `GameLogic/SidesList.h` - Faction definition system
-  - **Purpose**: Define playable factions and their capabilities
-  - **Used by**: GameLogic.h, team management
-  - **Dependencies**:  PlayerTemplate.h
-  - **Key functions**:
-    - `GetSideInfo(SideID id)`: Get faction information
-    - `GetUnitList(SideID id)`: Get buildable units for faction
-    - `GetDefaultStartingUnits(SideID id)`: Get initial units
-  - **Features**: Faction-specific units, upgrades, and special abilities
-
-- 🎮 `GameLogic/TeamsList.h` - Team management system
-  - **Purpose**: Manage player teams and alliances
-  - **Used by**: Player.h, VictoryConditions.h
+  - **Purpose**:
+  - **Used by**:
   - **Dependencies**:
   - **Key functions**:
-    - `CreateTeam(TeamID id)`: Create new team
-    - `AddPlayerToTeam(PlayerID player, TeamID team)`: Add player to team
-    - `SetTeamAlliance(TeamID team1, TeamID team2, AllianceType type)`: Configure team relationship
+  - **Features**:
+
+- 🎮 `GameLogic/TeamsList.h` - Team management system
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
+  - **Key functions**:
   - **Alliance Types**: Allied, Neutral, Enemy
 
 </details>
@@ -1532,20 +1449,20 @@ The update rate is locked to a fixed timestep (typically 10 updates per second) 
 - ✅🎮 `GameLogic/Object.h` - Base game object
   - **Exists**: Verified at `Code/GameEngine/Include/GameLogic/Object.h`
   - **Functionality**: Foundation for all game entities
-  - **Key functions**: Update(), GetPosition(), SetPosition(), IsVisibleTo()
-  - **Features**: Composition-based behavior through module system
+  - **Key functions**:
+  - **Features**:
   - **Notes**: Implementation includes a more extensive property system than documented
 
 - ✅🎮 `GameLogic/ObjectTypes.h` - Object type definitions
   - **Exists**: Verified at `Code/GameEngine/Include/GameLogic/ObjectTypes.h`
   - **Functionality**: Define different types of game objects
-  - **Key functions**: GetObjectType(), GetTypeName(), IsTypeOf()
+  - **Key functions**:
   - **Object Categories**: Accurately documents buildings, units, weapons, terrain, effects
 
 - ✅🎮 `GameLogic/ObjectStatusBits.h` - Object state flags
   - **Exists**: Verified at `Code/GameEngine/Include/GameLogic/ObjectStatusBits.h`
   - **Functionality**: Define bit flags for object state
-  - **Key functions**: SetStatus(), ClearStatus(), HasStatus() 
+  - **Key functions**:
   - **Design**: Implementation uses efficient bit masking as implied in documentation
 
 <blockquote>
@@ -1612,16 +1529,10 @@ Each specialized object type implements its own version of core functions like U
 <summary>Object Partition System</summary>
 
 - 🎮 `GameLogic/PartitionManager.h` - Spatial partitioning system
-  - **Purpose**: Efficiently manage object spatial relationships
-  - **Used by**: GameLogic.h, collision detection systems
-  - **Dependencies**: Object.h, SparseMatchFinder.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `InsertObject(Object* obj)`: Add object to spatial partition
-    - `RemoveObject(Object* obj)`: Remove object from partition
-    - `UpdateObjectPosition(Object* obj)`: Update object partition location
-    - `FindObjectsInRadius(Vector3 pos, float radius)`: Find nearby objects
-    - `FindNearestObject(Vector3 pos, KindOfType kind)`: Find closest object of type
-    - `LineOfSightCheck(Vector3 start, Vector3 end)`: Check for line of sight obstruction
   - **Implementation**: Grid-based spatial partitioning optimized for RTS gameplay
   
 The partition system divides the game world into a grid of cells for efficient spatial queries. This approach drastically improves performance for operations like:
@@ -1640,36 +1551,24 @@ The system dynamically updates as objects move, maintaining optimal performance 
 <summary>Object Creation & Management</summary>
 
 - 🎮 `GameLogic/ObjectCreationList.h` - Object batch creation
-  - **Purpose**: Manage batch creation of game objects
-  - **Used by**: GameLogic.h, level loading, mission scripting
-  - **Dependencies**: ThingFactory.h, Object.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `AddObject(ObjectType type, Vector3 position)`: Queue object for creation
-    - `ProcessCreationList()`: Create all queued objects
-    - `SetCreationCallback(CreationCallbackFn callback)`: Set post-creation handler
   - **Design**: Optimizes batch object creation for level loading and reinforcements
 
 - 🎮 `GameLogic/ThingFactory.h` - Object factory system
-  - **Purpose**: Create game objects from templates
-  - **Used by**: GameLogic.h, ObjectCreationList.h
-  - **Dependencies**: ThingTemplate.h, Object.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `CreateThing(ThingTemplate* tmpl, Vector3 position)`: Create object from template
-    - `CreateThingByName(const char* name, Vector3 position)`: Create object by name
-    - `RegisterTemplate(ThingTemplate* tmpl)`: Register new object template
-    - `LoadTemplates(const char* filename)`: Load object definitions from file
-  - **Features**: Centralized object creation with template-based instantiation
+  - **Features**:
 
 - 🎮 `GameLogic/ObjectIter.h` - Object collection traversal
-  - **Purpose**: Iterate through game objects efficiently
-  - **Used by**: GameLogic systems requiring object traversal
-  - **Dependencies**: Object.h, PartitionManager.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `Reset()`: Start iteration from beginning
-    - `Next()`: Move to next object
-    - `Get()`: Access current object
-    - `FilterByType(KindOfType type)`: Restrict to specific types
-    - `FilterByPlayer(PlayerID id)`: Restrict to specific player's objects
   - **Design**: Efficient iteration through potentially thousands of game objects
 
 </details>
@@ -1684,7 +1583,7 @@ The system dynamically updates as objects move, maintaining optimal performance 
 - ⚠️ `GameLogic/AI.h` - Base AI system
   - **Exists**: Verified at `Code/GameEngine/Include/GameLogic/AI.h`
   - **Functionality**: Artificial intelligence controller for computer-controlled players
-  - **Key functions**: Update(), MakeDecision(), BuildOrder()
+  - **Key functions**:
   - **Notes**: Implementation includes more sophisticated threat assessment algorithms and personality systems than documented
 
 - ❓ `GameLogic/AIStateMachine.h` - State-based decision system
@@ -1755,27 +1654,18 @@ These managers communicate through a central coordinator in the AIPlayer class, 
 <summary>Pathfinding System</summary>
 
 - 🎮 `GameLogic/AIPathfind.h` - Pathfinding system
-  - **Purpose**: Calculate optimal paths for unit movement
-  - **Used by**: AI.h, Locomotor.h, unit movement systems
-  - **Dependencies**: TerrainLogic.h, PartitionManager.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `FindPath(Vector3 start, Vector3 end)`: Calculate path between points
-    - `GetCost(Vector3 position, UnitType type)`: Get movement cost for position
-    - `IsPassable(Vector3 position, UnitType type)`: Check if position can be traversed
-    - `RefinePathWithSmoothingFilter()`: Optimize calculated path
-    - `FindAlternatePath()`: Find secondary route when primary is blocked
-  - **Features**: A* pathfinding algorithm, terrain cost analysis, path caching
+  - **Features**:
 
 - 🎮 `GameLogic/AIGuard.h` - Guard behavior controller
-  - **Purpose**: Manage guard posts and patrol routes
-  - **Used by**: Guard AI behaviors, defensive structures
-  - **Dependencies**: AIPathfind.h, AIStateMachine.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `AssignGuardPost(Vector3 position)`: Set guard position
-    - `UpdatePatrolPath(Vector3* points, int count)`: Define patrol route
-    - `DetectIntruders(float radius)`: Check for enemies in guard area
-    - `RespondToThreat(Object* threat)`: React to detected enemies
-  - **Features**: Patrol routing, threat response, guard position maintenance
+  - **Features**:
 
 The pathfinding system utilizes several advanced techniques:
 
@@ -1843,20 +1733,20 @@ The hardest AI difficulties employ more advanced tactics like feint attacks, com
 <summary>Combat Systems (10+ files)</summary>
 
 - 🎮 `GameLogic/Weapon.h` - Weapon system
-  - **Purpose**: Handles weapon behaviors and effects
-  - **Used by**: Object.h combat systems
-  - **Dependencies**: Damage.h, WeaponSet.h
-  - **Key functions**: Fire(), CanTarget(), GetDamage()
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
+  - **Key functions**:
 
 <blockquote>
 <details>
 <summary>Damage System</summary>
 
 - 🎮 `GameLogic/Damage.h` - Damage system
-  - **Purpose**: Damage calculation and application
-  - **Used by**: Weapon.h
-  - **Dependencies**: Armor.h, DamageFX.h
-  - **Key functions**: Apply(), CanDamage(), GetEfficiency()
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
+  - **Key functions**:
 
 </details>
 </blockquote>
@@ -1870,41 +1760,25 @@ The hardest AI difficulties employ more advanced tactics like feint attacks, com
 <summary>Core Player Management</summary>
 
 - 🎮 `GameLogic/Player.h` - Player controller
-  - **Purpose**: Central player management and state tracking
-  - **Used by**: GameLogic.h, AI systems, UI systems
-  - **Dependencies**: PlayerTemplate.h, SidesList.h, TeamsList.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `Initialize(PlayerID id, SideID faction)`: Set up player with faction
-    - `SetColor(ColorType color)`: Set player color
-    - `GetSide()`: Get player faction
-    - `AddUnit(ObjectID unit)`: Register unit with player
-    - `RemoveUnit(ObjectID unit)`: Remove unit from player ownership
-    - `GetMoney()`: Get player resource amount
-    - `ChangeMoney(int amount)`: Modify player resource amount
-    - `GetPower()`: Get current power production
-    - `CanBuild(ObjectType type)`: Check if player can build object
-  - **Features**: Resource management, unit ownership tracking, tech tree status
+  - **Features**:
 
 - 🎮 `GameLogic/PlayerTemplate.h` - Player configuration template
-  - **Purpose**: Define player starting parameters
-  - **Used by**: Player.h, GameLogic.h
-  - **Dependencies**: SidesList.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `SetStartingMoney(int amount)`: Set initial resources
-    - `SetStartingPower(int amount)`: Set initial power level
-    - `GetStartingPosition()`: Get initial base location
-    - `AddStartingUnit(UnitType type, int count)`: Add unit to starting forces
-  - **Features**: Configurable player start conditions by map or scenario
+  - **Features**:
 
 - 🎮 `GameLogic/ExperienceTracker.h` - Experience management
-  - **Purpose**: Manage experience distribution
-  - **Used by**: Combat system
-  - **Dependencies**: ExperienceLevel.h, Player.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `AwardExperience(ObjectID source, ObjectID target, int baseAmount)`: Award XP for kill
-    - `CalculateExperienceValue(ObjectID object)`: Calculate object's XP value
-    - `DistributeExperience(ObjectID killed, int amount, float radius)`: Share XP with nearby units
-  - **Features**: Experience sharing, kill value calculation, group bonuses
+  - **Features**:
 
 </details>
 </blockquote>
@@ -1978,39 +1852,25 @@ This flow ensures consistent behavior across network games by synchronizing comm
 <summary>Core Terrain Components</summary>
 
 - 🔄 `GameLogic/TerrainLogic.h` - Terrain gameplay logic
-  - **Purpose**: Handle terrain gameplay effects and properties
-  - **Used by**: Pathfinding, combat system, placement system
-  - **Dependencies**: HeightMap.h, TerrainTile.h, Damage.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `GetHeight(float x, float z)`: Get terrain height at position
-    - `GetSurfaceType(float x, float z)`: Get ground surface type
-    - `IsPassable(float x, float z, UnitType type)`: Check if unit can traverse
-    - `ApplyDamage(Vector3 position, float radius, DamageInfo damage)`: Apply terrain damage
-    - `GetSlopeAngle(float x, float z)`: Get terrain slope angle
   - **Surface Types**: Dirt, Sand, Rock, Grass, Concrete, Shallow Water, Deep Water
-  - **Features**: Terrain destruction, material-specific effects, elevation impacts
+  - **Features**:
 
 - 🎮 `GameLogic/HeightMap.h` - Elevation data storage
-  - **Purpose**: Store and access terrain elevation data
-  - **Used by**: TerrainLogic.h, TerrainVisual.h
-  - **Dependencies**: None
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `GetHeight(int x, int z)`: Get height at grid position
-    - `SetHeight(int x, int z, float height)`: Set height at point
-    - `GetNormal(int x, int z)`: Get surface normal vector
-    - `GetInterpolatedHeight(float x, float z)`: Get smoothed height
-    - `GetHeightMapDimensions()`: Get map dimensions
   - **Implementation**: Height grid with interpolation for smooth access
 
 - 🖼️ `GameClient/TerrainVisual.h` - Visual terrain representation
-  - **Purpose**: Render terrain and manage visual appearance
-  - **Used by**: GameRenderer, View.h
-  - **Dependencies**: TerrainLogic.h, TerrainTextureSet.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `RenderTerrain()`: Draw terrain meshes
-    - `UpdateTextureMaps()`: Update terrain texturing
-    - `ApplyTexture(int x, int z, TextureID texture, float strength)`: Apply texture blend
-    - `CreateScorch(Vector3 position, float radius, float intensity)`: Add burn mark
   - **Visual Features**: Multi-texture blending, dynamic shadowing, terrain damage marks
 
 </details>
@@ -2115,9 +1975,7 @@ This architecture maintains separation between gameplay effects and visual repre
 The module system implements a flexible, composition-based approach to object behaviors:
 
 1. **Core Architecture**:
-   - `Module.h`: Base interface defining core module properties and lifecycle
-   - `UpdateModule.h`: Extends base interface with update cycle handling
-   - Specialized modules: Implement specific behaviors and functionality
+   - `Module.h`
 
 2. **Module Lifecycle**:
    - Creation: Module instance created by ModuleFactory
@@ -2154,13 +2012,13 @@ Each game object typically has 5-15 modules that determine its complete behavior
 - ✅🎮 `GameLogic/Module/UpdateModule.h` - Base update module
   - **Exists**: Verified at `Code/GameEngine/Include/GameLogic/Module/UpdateModule.h`
   - **Functionality**: Foundation for object behavior modules
-  - **Key functions**: InitModule(), OnDetach()
+  - **Key functions**:
   - **Design**: Implementation follows documented template pattern for modular behavior system
 
 - 🎮 `GameLogic/Module/BehaviorModule.h` - Complex behavior module
-  - **Purpose**: Implement higher-level object behaviors
-  - **Used by**: Advanced unit behaviors
-  - **Dependencies**: UpdateModule.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
   - **Design**: State-driven behavior implementation with event responses
 
@@ -2213,47 +2071,32 @@ Each module type enforces a standard interface for that behavior category while 
 <summary>AI Update Modules</summary>
 
 - 🎮 `GameLogic/Module/AIUpdate.h` - Base AI behavior module
-  - **Purpose**: Provide foundation for unit AI behaviors
-  - **Used by**: All AI-controlled units
-  - **Dependencies**: UpdateModule.h, AIStateMachine.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `ProcessOrders()`: Execute current orders
-    - `EvaluateThreats()`: Assess nearby threats
-    - `ChooseAction()`: Select appropriate action
-    - `GetState()`: Get current AI state
-  - **Features**: State-based decision making, order processing, threat response
+  - **Features**:
 
 - 🎮 `GameLogic/Module/DeployStyleAIUpdate.h` - Deployable unit AI
-  - **Purpose**: Control units that can deploy/undeploy
-  - **Used by**: Artillery, construction vehicles
-  - **Dependencies**: AIUpdate.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `EvaluateDeployment()`: Determine if deployment is beneficial
-    - `Deploy()`: Change to deployed state
-    - `Undeploy()`: Return to mobile state
-  - **Features**: Contextual deployment decisions, position evaluation
+  - **Features**:
 
 - 🎮 `GameLogic/Module/TransportAIUpdate.h` - Transport vehicle AI
-  - **Purpose**: Control transport unit behavior
-  - **Used by**: Transport vehicles, helicopters
-  - **Dependencies**: AIUpdate.h, TransportContain.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `LoadUnits(UnitList* units)`: Pick up units
-    - `FindDropoffPoint()`: Determine where to unload
-    - `EvaluateLoadingPosition()`: Find safe loading spot
-    - `AvoidThreats()`: Protect transported units
-  - **Features**: Passenger loading/unloading logic, safe path selection
+  - **Features**:
 
 - 🎮 `GameLogic/Module/HordeUpdate.h` - Group behavior module
-  - **Purpose**: Implement horde behavior mechanics
-  - **Used by**: Units with group bonuses
-  - **Dependencies**: AIUpdate.h, UpdateModule.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `FindHordeMembers()`: Locate nearby compatible units
-    - `CalculateHordeBonus()`: Determine strength bonus
-    - `ApplyHordeEffects()`: Apply group effects
-    - `MaintainHordeFormation()`: Keep units together
-  - **Features**: Group coordination, strengthening effects, formation movement
+  - **Features**:
 
 The AI update modules provide different behavioral patterns for units, implementing distinct "personalities" and capabilities through a composable architecture. This allows for great variety in unit behaviors while maintaining a consistent framework.
 </details>
@@ -2264,48 +2107,32 @@ The AI update modules provide different behavioral patterns for units, implement
 <summary>Combat Modules</summary>
 
 - 🎮 `GameLogic/Module/FireWeaponUpdate.h` - Weapon firing controller
-  - **Purpose**: Control weapon attack behaviors
-  - **Used by**: Armed units and structures
-  - **Dependencies**: UpdateModule.h, Weapon.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `FindTarget()`: Acquire suitable target
-    - `AcquireLock(Object* target)`: Establish target lock
-    - `FireAtTarget(Object* target)`: Attack target
-    - `CalculateLeadPosition()`: Predict moving target position
-  - **Features**: Target selection, firing logic, accuracy calculations
+  - **Features**:
 
 - 🎮 `GameLogic/Module/LaserUpdate.h` - Laser weapon controller
-  - **Purpose**: Control continuous beam weapons
-  - **Used by**: Laser-equipped units
-  - **Dependencies**: FireWeaponUpdate.h, ProjectileStreamUpdate.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `InitializeLaser()`: Set up laser parameters
-    - `MaintainBeam(Object* target)`: Keep beam on target
-    - `ApplyHeatDamage()`: Apply damage over time
-    - `GenerateLaserEffects()`: Create visual effects
-  - **Features**: Continuous damage application, beam visuals, heat mechanics
+  - **Features**:
 
 - 🎮 `GameLogic/Module/OverchargeBehavior.h` - Special attack overcharge
-  - **Purpose**: Implement escalating attack power
-  - **Used by**: Special weapons, superweapons
-  - **Dependencies**: UpdateModule.h, FireWeaponUpdate.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `ChargeWeapon(float amount)`: Increase weapon charge
-    - `GetChargeLevel()`: Get current charge percentage
-    - `ReleaseCharge()`: Discharge accumulated power
-    - `CalculateDamageBonus()`: Determine damage multiplier
-  - **Features**: Charging mechanics, visual charge indicators, enhanced damage
+  - **Features**:
 
 - 🎮 `GameLogic/Module/FlammableUpdate.h` - Fire susceptibility and spread
-  - **Purpose**: Handle fire damage and propagation
-  - **Used by**: Flammable objects, fire weapons
-  - **Dependencies**: UpdateModule.h, DamageModule.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `Ignite(float intensity)`: Start object burning
-    - `UpdateBurning()`: Process fire effects
-    - `ExtinguishFire(float amount)`: Reduce burning
-    - `SpreadFireToNearby()`: Propagate fire to other objects
-  - **Features**: Spreading fire mechanics, damage over time, visual fire effects
+  - **Features**:
 
 Combat modules work together to create the diverse weapon behaviors seen in the game, from standard attacks to specialized weapons with unique mechanics. The modular design allows complex behaviors to be created through composition rather than inheritance.
 </details>
@@ -2317,48 +2144,32 @@ Combat modules work together to create the diverse weapon behaviors seen in the 
 <summary>Structure Modules</summary>
 
 - 🎮 `GameLogic/Module/ProductionUpdate.h` - Unit production system
-  - **Purpose**: Manage unit creation in factories
-  - **Used by**: Production structures
-  - **Dependencies**: UpdateModule.h, BuildList.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `StartProduction(ObjectType type)`: Begin building unit
-    - `CancelProduction(int index)`: Cancel queued unit
-    - `GetProgress()`: Get production completion percentage
-    - `CompleteProduction()`: Finish current production
-  - **Features**: Production queues, build time calculation, resource deduction
+  - **Features**:
 
 - 🎮 `GameLogic/Module/PowerPlantUpdate.h` - Power generation
-  - **Purpose**: Provide power to faction infrastructure
-  - **Used by**: Power plant structures
-  - **Dependencies**: UpdateModule.h, Energy.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `GeneratePower()`: Produce power units
-    - `GetPowerOutput()`: Get current power generation
-    - `ModifyOutput(float factor)`: Change power output
-    - `HandleDamageEffects()`: Process damage impact on generation
-  - **Features**: Power level management, power-down effects, grid connection
+  - **Features**:
 
 - 🎮 `GameLogic/Module/StructureBody.h` - Building physical properties
-  - **Purpose**: Control building physical characteristics
-  - **Used by**: All structures
-  - **Dependencies**: BodyModule.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `CalculateFootprint()`: Determine building area
-    - `GetBuildProgress()`: Get construction progress
-    - `ProcessDamageToSection(Vector3 hitLocation)`: Handle locational damage
-    - `GetEntrancePoint(EntranceType type)`: Get logical entry point
-  - **Features**: Building states (normal, damaged, rubble), footprint management
+  - **Features**:
 
 - 🎮 `GameLogic/Module/StructureCollapseUpdate.h` - Building destruction
-  - **Purpose**: Handle structure collapse mechanics
-  - **Used by**: Large structures
-  - **Dependencies**: UpdateModule.h, StructureBody.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `InitiateCollapse()`: Begin collapse sequence
-    - `UpdateCollapse()`: Process collapse animation
-    - `GenerateDebris()`: Create debris objects
-    - `ApplyAreaDamage()`: Damage nearby objects
-  - **Features**: Staged collapse, dust effects, debris generation
+  - **Features**:
 
 Structure modules implement the behavior of buildings, including production facilities, power generators, defenses, and special structures. These modules give each building type its unique gameplay characteristics while sharing common building traits.
 </details>
@@ -2441,35 +2252,35 @@ Multiplayer networking system handling connections, game synchronization, and on
 - ✅ `GameNetwork/NetworkInterface.h` - Network abstraction layer
   - **Exists**: Verified at `Code/GameEngine/Include/GameNetwork/NetworkInterface.h`
   - **Functionality**: Central interface for all network functionality providing protocol encapsulation
-  - **Key functions**: Initialize(), Connect(), SendPacket(), ProcessPackets(), GetStatistics()
-  - **Features**: Thread-safe operations, configurable quality of service, custom packet handlers
+  - **Key functions**:
+  - **Features**:
   - **Notes**: Implements SubsystemInterface pattern for integration with GameEngine
 
 - ✅ `GameNetwork/NetworkDefs.h` - Protocol specification
   - **Exists**: Verified at `Code/GameEngine/Include/GameNetwork/NetworkDefs.h`
   - **Functionality**: Contains network protocol constants, packet structures, and validation rules
   - **Key definitions**: Protocol version, maximum packet size, timeout constants, error codes
-  - **Features**: Comprehensive protocol specification ensuring compatibility and security
+  - **Features**:
 
 - ✅ `GameNetwork/DisconnectManager.h` - Connection state management
   - **Exists**: Verified at `Code/GameEngine/Include/GameNetwork/DisconnectManager.h`
   - **Functionality**: Manages connection failures, graceful disconnection, and reconnection attempts
-  - **Key functions**: HandleConnectionDropped(), InitiateDisconnect(), AttemptReconnect()
-  - **Features**: Detailed disconnect reason tracking, configurable reconnection policies
+  - **Key functions**:
+  - **Features**:
 
 #### Synchronization System
 
 - ⚠️ `GameNetwork/FrameData.h` - Game state synchronization
   - **Exists**: Verified at `Code/GameEngine/Include/GameNetwork/FrameData.h`
   - **Functionality**: Packages game commands for network transmission in the lockstep simulation model
-  - **Key functions**: AddCommand(), Serialize(), Deserialize(), Execute()
+  - **Key functions**:
   - **Notes**: Implementation may differ from documentation in handling of frame execution timing
 
 - ⚠️ `GameNetwork/FrameDataManager.h` - Synchronization management
   - **Exists**: Verified at `Code/GameEngine/Include/GameNetwork/FrameDataManager.h`
   - **Functionality**: Coordinates game state across multiple clients
-  - **Key functions**: DispatchFrames(), ProcessIncomingFrames(), SyncFrame(), HandleDesync()
-  - **Features**: Latency compensation, command queueing, desync detection
+  - **Key functions**:
+  - **Features**:
   - **Notes**: Actual implementation uses a more complex buffering strategy than documented
 
 #### Connection Management
@@ -2477,15 +2288,15 @@ Multiplayer networking system handling connections, game synchronization, and on
 - ✅ `GameNetwork/Connection.h` - Network connection handling
   - **Exists**: Verified at `Code/GameEngine/Include/GameNetwork/Connection.h`
   - **Functionality**: Manages individual peer-to-peer network connections
-  - **Key functions**: Initialize(), SendPacket(), ReceivePackets(), GetStatus(), UpdateHeartbeat()
-  - **Features**: Connection quality monitoring, heartbeat management, statistics tracking
+  - **Key functions**:
+  - **Features**:
   - **Notes**: Implementation uses a state machine with clear transitions between connection phases
 
 - ✅ `GameNetwork/ConnectionManager.h` - Multi-connection controller
   - **Exists**: Verified at `Code/GameEngine/Include/GameNetwork/ConnectionManager.h`
   - **Functionality**: Manages multiple connections in client-server or peer-to-peer topologies
-  - **Key functions**: CreateConnection(), RemoveConnection(), BroadcastPacket(), UpdateConnections()
-  - **Features**: Connection policies for reconnection handling, bandwidth allocation, protocol validation
+  - **Key functions**:
+  - **Features**:
 
 #### Online Services Integration
 
@@ -2669,9 +2480,7 @@ The game initialization follows a sequential process:
 
 Key initialization files:
 
-- 🔄 `Main/WinMain.h`: Application entry point
-- 🔄 `Common/GameEngine.h`: Core engine initialization
-- 🔄 `Common/CommandLine.h`: Startup parameter processing
+- 🔄 `Main/WinMain.h`
 
 </details>
 </blockquote>
@@ -2683,36 +2492,24 @@ Key initialization files:
 <summary>Synchronization (6+ files)</summary>
 
 - 🌐 `GameNetwork/FrameData.h` - Game state synchronization
-  - **Purpose**: Package game commands for network transmission
-  - **Used by**: GameLogic, FrameDataManager.h
-  - **Dependencies**: NetCommandMsg.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `AddCommand(NetCommandMsg* cmd)`: Add command to frame
-    - `Serialize()`: Convert frame to network packet
-    - `Deserialize(void* data)`: Extract frame from packet
-    - `Execute()`: Process all commands in frame
   - **Design**: Frame-based lockstep simulation approach
 
 - 🌐 `GameNetwork/FrameDataManager.h` - Synchronization management
-  - **Purpose**: Coordinate game state across multiple clients
-  - **Used by**:NetworkInterface.h
-  - **Dependencies**: FrameData.h, ConnectionManager.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `DispatchFrames()`: Send pending frames
-    - `ProcessIncomingFrames()`: Handle received frames
-    - `SyncFrame(int frameNumber)`: Synchronize specific frame
-    - `HandleDesync()`: Correct desynchronization issues
-  - **Features**: Latency compensation, command queueing, desync detection
+  - **Features**:
 
 - 🌐 `GameNetwork/FrameMetrics.h` - Network performance monitoring
-  - **Purpose**: Track and analyze network performance
-  - **Used by**: FrameDataManager.h, NetworkInterface.h
-  - **Dependencies**: None
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `RecordLatency(int ms)`: Log connection latency
-    - `RecordPacketLoss()`: Track lost packets
-    - `GetAverageLatency()`: Calculate average delay
-    - `GenerateReport()`: Create performance summary
   - **Metrics**: Latency, packet loss, bandwidth usage, frame delay
 
 </details>
@@ -2723,23 +2520,17 @@ Key initialization files:
 <summary>Command System (5+ files)</summary>
 
 - 🌐 `GameNetwork/NetCommandList.h` - Command collection
-  - **Purpose**: Group game commands for transmission
-  - **Used by**: FrameData.h, GameLogic
-  - **Dependencies**: NetCommandMsg.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `AddCommand(NetCommandMsg* cmd)`: Add command
-    - `RemoveCommand(NetCommandRef ref)`: Remove command
-    - `ClearCommands()`: Empty command list
   - **Design**: Optimized for network transmission
 
 - 🌐 `GameNetwork/NetCommandMsg.h` - Network command messages
-  - **Purpose**: Encapsulate game commands for network transmission
-  - **Used by**: NetCommandList.h, FrameData.h
-  - **Dependencies**: NetPacket.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `Serialize(void* buffer)`: Write command to buffer
-    - `Deserialize(void* buffer)`: Read command from buffer
-    - `GetCommandType()`: Identify command type
   - **Command Types**: Move, Attack, Create, Destroy, Special Power
 
 </details>
@@ -2750,36 +2541,25 @@ Key initialization files:
 <summary>GameSpy Integration (10+ files)</summary>
 
 - 🌐 `GameNetwork/GameSpy.h` - GameSpy service integration
-  - **Purpose**: Connect to GameSpy online services
-  - **Used by**:  lobby systems
-  - **Dependencies**: GameSpyGP.h, GameSpyGameInfo.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `Initialize()`: Connect to GameSpy services
-    - `Login(const char* username, const char* password)`: Authenticate user
-    - `CreateRoom()`: Host multiplayer game
-    - `JoinRoom(RoomID id)`: Join existing game
-  - **Features**: Authentication, matchmaking, statistics tracking
+  - **Features**:
 
 - 🌐 `GameNetwork/GameSpyChat.h` - Chat functionality
-  - **Purpose**: In-game and lobby chat services
-  - **Used by**: GameSpy.h, UI systems
-  - **Dependencies**: GameSpy/Chat/chat.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `SendMessage(const char* message)`: Send chat message
-    - `JoinChannel(const char* channel)`: Join chat channel
-    - `SetAway(const char* message)`: Set away status
-  - **Features**: Private messaging, channels, moderation
+  - **Features**:
 
 - 🌐 `GameNetwork/GameSpyGameInfo.h` - Game session information
-  - **Purpose**: Manage game session metadata
-  - **Used by**: GameSpy.h, lobby UI
-  - **Dependencies**: GameSpy.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `SetGameName(const char* name)`: Set session name
-    - `SetMapName(const char* map)`: Set current map
-    - `SetPlayerCount(int count)`: Update player count
-    - `UpdateGameInfo()`: Refresh server listing
-  - **Features**: Server browser integration, game filtering
+  - **Features**:
 
 <blockquote>
 <details>
@@ -2788,33 +2568,24 @@ Key initialization files:
 GameSpy services operate in background threads to avoid blocking the main game loop.
 
 - 🌐 `GameNetwork/GameSpy/ThreadUtils.h` - Threading utilities
-  - **Purpose**: Manage GameSpy background threads
-  - **Used by**: GameSpy subsystems
-  - **Dependencies**: Platform thread libraries
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `CreateThread(ThreadFunction func)`: Create new thread
-    - `WaitForThread(ThreadID id)`: Wait for completion
-    - `SynchronizeData()`: Thread-safe data sharing
   - **Design**: Thread pool management for network operations
 
 - 🌐 `GameNetwork/GameSpy/PeerThread.h` - Peer connection thread
-  - **Purpose**: Handle peer-to-peer connections
-  - **Used by**: GameSpy.h
-  - **Dependencies**: ThreadUtils.h, PeerDefs.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `StartPeerOperations()`: Begin peer networking
-    - `ProcessMessages()`: Handle peer messages
-    - `ShutdownPeer()`: Close peer connections
-  - **Features**: NAT traversal, direct connections
+  - **Features**:
 
 - 🌐 `GameNetwork/GameSpy/BuddyThread.h` - Friend system thread
-  - **Purpose**: Manage friend list and status
-  - **Used by**: GameSpy.h, lobby UI
-  - **Dependencies**: ThreadUtils.h, BuddyDefs.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `UpdateBuddyList()`: Refresh friend statuses
-    - `SendBuddyRequest(const char* name)`: Send friend request
-    - `GetBuddyStatus(const char* name)`: Check friend status
   - **States**: Online, Offline, Away, Playing
 
 </details>
@@ -2827,34 +2598,24 @@ GameSpy services operate in background threads to avoid blocking the main game l
 <summary>Network Transport Layer (3+ files)</summary>
 
 - 🌐 `GameNetwork/Transport.h` - Transport protocol abstraction
-  - **Purpose**: Abstract low-level network protocols
-  - **Used by**: Connection.h
-  - **Dependencies**: TCP.h, UDP.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `CreateSocket()`: Initialize network socket
-    - `Send(void* data, int size)`: Send data packet
-    - `Receive(void* buffer, int maxSize)`: Receive data
-    - `Close()`: Close transport connection
   - **Implementations**: TCP for reliable data, UDP for fast updates
 
 - 🌐 `GameNetwork/UDP.h` - UDP protocol handler
-  - **Purpose**: Handle connectionless UDP communication
-  - **Used by**: Transport.h
-  - **Dependencies**: Platform network libraries
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `SendTo(Address addr, void* data, int size)`: Send datagram
-    - `ReceiveFrom(Address* addr, void* buffer)`: Receive datagram
-  - **Features**: Low latency, fast but unreliable transmission
+  - **Features**:
 
 - 🌐 `GameNetwork/NetPacket.h` - Packet structure
-  - **Purpose**: Define network packet format
-  - **Used by**: Connection.h, Transport.h
-  - **Dependencies**: None
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `Allocate(int size)`: Create packet buffer
-    - `GetData()`: Access packet data
-    - `GetSize()`: Get packet size
-    - `GetType()`: Get packet type
   - **Packet Types**: Chat, Command, Ping, Heartbeat, Disconnect
 
 </details>
@@ -2923,24 +2684,18 @@ This design ensures reliable multiplayer performance while maintaining determini
 <summary>NAT Traversal & Firewall (3+ files)</summary>
 
 - 🌐 `GameNetwork/NAT.h` - NAT traversal system
-  - **Purpose**: Handle network address translation issues
-  - **Used by**: ConnectionManager.h
-  - **Dependencies**: FirewallHelper.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `DetectNATType()`: Determine NAT configuration
-    - `AttemptPunchthrough(Address addr)`: Try NAT hole punching
-    - `UseMediatedConnection()`: Use server for connection relay
   - **NAT Types**: Open, Cone, Restricted, Symmetric
 
 - 🌐 `GameNetwork/FirewallHelper.h` - Firewall handling
-  - **Purpose**: Deal with firewall configuration issues
-  - **Used by**: NAT.h, ConnectionManager.h
-  - **Dependencies**: Platform-specific libraries
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `RequestAccess()`: Request firewall permission
-    - `CheckPortAvailability()`: Verify port is open
-    - `SuggestPortForward()`: Provide user instructions
-  - **Features**: UPnP support, firewall rule creation
+  - **Features**:
 
 </details>
 </blockquote>
@@ -2950,24 +2705,17 @@ This design ensures reliable multiplayer performance while maintaining determini
 <summary>LAN Support (4+ files)</summary>
 
 - 🌐 `GameNetwork/LANAPI.h` - Local area network support
-  - **Purpose**: Handle LAN game discovery and setup
-  - **Used by**: NetworkInterface.h
-  - **Dependencies**: LANGameInfo.h, LANPlayer.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `BroadcastGamePresence()`: Announce game to LAN
-    - `ScanForGames()`: Find LAN games
-    - `JoinLANGame(LANGameInfo* info)`: Connect to LAN game
-  - **Features**: Auto-discovery, low-latency LAN optimization
+  - **Features**:
 
 - 🌐 `GameNetwork/LANGameInfo.h` - LAN game information
-  - **Purpose**: Store LAN game metadata
-  - **Used by**: LANAPI.h, UI systems
-  - **Dependencies**: LANPlayer.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `GetGameName()`: Get game name
-    - `GetPlayerCount()`: Get number of players
-    - `GetPing()`: Get connection latency
-    - `IsPasswordProtected()`: Check if password required
   - **Design**: Compact format for broadcast discovery
 
 </details>
@@ -2978,16 +2726,10 @@ This design ensures reliable multiplayer performance while maintaining determini
 <summary>Connection Management (4+ files)</summary>
 
 - 🌐 `GameNetwork/Connection.h` - Network connection handling
-  - **Purpose**: Manages individual network connections between peers
-  - **Used by**: ConnectionManager.h, NetworkInterface.h
-  - **Dependencies**: Transport.h, NetPacket.h, NetworkDefs.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `Initialize(Address addr, ConnectionParams* params)`: Set up connection with remote peer
-    - `SendPacket(NetPacket* packet, DeliveryType delivery)`: Send packet with specified reliability
-    - `ReceivePackets(int maxPackets)`: Process incoming packets
-    - `GetStatus()`: Get current connection state
-    - `GetStatistics(StatisticsLevel level)`: Retrieve connection performance metrics
-    - `UpdateHeartbeat()`: Send keep-alive packet if needed
   - **States**:
     - Disconnected: No active connection
     - Connecting: Connection attempt in progress
@@ -2999,17 +2741,10 @@ This design ensures reliable multiplayer performance while maintaining determini
     - Bandwidth throttling and flow control
 
 - 🌐 `GameNetwork/ConnectionManager.h` - Multi-connection controller
-  - **Purpose**: Manage multiple network connections in client-server or peer-to-peer topologies
-  - **Used by**: NetworkInterface.h
-  - **Dependencies**: Connection.h, DisconnectManager.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `CreateConnection(Address addr)`: Establish new connection
-    - `RemoveConnection(ConnectionID id)`: Terminate and remove connection
-    - `GetConnection(ConnectionID id)`: Access specific connection
-    - `BroadcastPacket(NetPacket* packet, DeliveryType delivery)`: Send packet to all connections
-    - `UpdateConnections()`: Process all connection events and timeouts
-    - `GetHostConnection()`: Get server connection (client-only)
-    - `GetClientConnections()`: Get all client connections (host-only)
   - **Connection Management Policies**:
     - AutoReconnect: Attempts to restore dropped connections
     - StrictValidation: Enforces protocol checks
@@ -3157,29 +2892,18 @@ This reliability system ensures critical game data reaches all players while min
 <summary>Online Services Integration (7+ files)</summary>
 
 - 🌐 `GameNetwork/GameSpy.h` - GameSpy integration system
-  - **Purpose**: Central coordinator for GameSpy online services
-  - **Used by**:  UI lobby systems
-  - **Dependencies**: GameSpyGP.h, GameSpyChat.h, GameSpyGameInfo.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `Initialize(GameSpyCredentials* creds)`: Set up GameSpy services
-    - `Login(const char* username, const char* password)`: Authenticate user
-    - `GetLoginStatus()`: Check current authentication state
-    - `CreateRoom(RoomSettings* settings)`: Create multiplayer game lobby
-    - `JoinRoom(RoomID id)`: Join existing game lobby
-    - `UpdatePlayerStatus(StatusType status, const char* statusText)`: Update player presence
   - **Services**: Authentication, matchmaking, friends list, game listings, statistics
 
 - 🌐 `GameNetwork/GameSpyGP.h` - Player presence system
-  - **Purpose**: Track player online status and profile information
-  - **Used by**: GameSpy.h, friend list UI
-  - **Dependencies**: GameSpy SDK
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `GetProfile(int profileID)`: Retrieve player profile
-    - `GetBuddyList()`: Get friend list
-    - `AddBuddy(const char* name)`: Add player to friend list
-    - `GetBuddyStatus(const char* name)`: Check if friend is online
-    - `SendBuddyRequest(const char* name)`: Send friend request
-  - **Features**: Friend status tracking, status messaging, buddy invitations
+  - **Features**:
 
 <blockquote>
 <details>
@@ -3245,24 +2969,17 @@ The GameSpy services operate as a hybrid system where initial matchmaking and se
 </blockquote>
 
 - 🌐 `GameNetwork/GameSpyPersistentStorage.h` - Online data storage
-  - **Purpose**: Store player data on GameSpy servers
-  - **Used by**: Statistics system, player profiles
-  - **Dependencies**: GameSpy.h, PersistentStorageThread.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `StoreData(const char* key, const void* data, int size)`: Save data to server
-    - `RetrieveData(const char* key, void* buffer, int size)`: Load data from server
-    - `DeleteData(const char* key)`: Remove stored data
-    - `GetStorageUsage()`: Check amount of used storage
-  - **Features**: Secure data storage, profile synchronization, achievements tracking
+  - **Features**:
 
 - 🌐 `GameNetwork/GameSpyThread.h` - Threaded service operations
-  - **Purpose**: Handle GameSpy operations in background threads
-  - **Used by**: GameSpy subsystems
-  - **Dependencies**: ThreadUtils.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `StartThread(ThreadFunction function, void* data)`: Launch operation in background
-    - `WaitForCompletion(ThreadID id)`: Wait for thread to finish
-    - `CancelOperation(ThreadID id)`: Terminate running thread
   - **Design**: Thread pool for non-blocking network operations
 
 <blockquote>
@@ -3270,15 +2987,11 @@ The GameSpy services operate as a hybrid system where initial matchmaking and se
 <summary>Stat Tracking & Leaderboards</summary>
 
 - 🌐 `GameNetwork/RankPointValue.h` - Player ranking system
-  - **Purpose**: Calculate and manage player skill ratings
-  - **Used by**: Matchmaking, leaderboard systems
-  - **Dependencies**: GameSpy.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `CalculateRankChange(GameResult result, PlayerRank opponent)`: Determine rating adjustment
-    - `GetRank()`: Get current player rank
-    - `GetMatchHistory(int count)`: Get recent match results
-    - `GetLeaderboardPosition()`: Get player position on leaderboard
-  - **Features**: ELO-based rating system, match history tracking, season rankings
+  - **Features**:
 
 The leaderboard system uses a modified ELO rating algorithm to determine player skill levels:
 
@@ -3313,15 +3026,11 @@ All ranking calculations happen on secure servers to prevent tampering, with res
 <summary>Network Diagnostics & Debugging (3+ files)</summary>
 
 - 🛠️ `GameNetwork/networkutil.h` - Network utility functions
-  - **Purpose**: Helper functions for network operations
-  - **Used by**: Various network components
-  - **Dependencies**: None
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `ParseAddress(const char* addrString)`: Convert string to address
-    - `FormatAddress(Address addr, char* buffer)`: Format address as string
-    - `CalculateChecksum(void* data, int size)`: Compute data checksum
-    - `IsPrivateIP(Address addr)`: Check if address is in private range
-  - **Features**: Address conversion, checksum calculation, network validation
+  - **Features**:
 
 <blockquote>
 <details>
@@ -3378,10 +3087,6 @@ The monitoring system includes visual indicators in the UI (connection quality i
   - **Used by**:
   - **Dependencies**:
   - **Key functions**:
-    - `GetLocalAddresses()`:
-    - `GetDefaultInterface()`:
-    - `GetInterfaceName(InterfaceID id)`:
-    - `GetInterfaceType(InterfaceID id)`:
   - **Features**:
 
 <blockquote><details>
@@ -3390,16 +3095,11 @@ The monitoring system includes visual indicators in the UI (connection quality i
 Development builds include built-in packet analysis tools for troubleshooting network issues:
 
 - 🛠️ `Main/mangler/mangler.h` - Network packet inspector
-  - **Purpose**: Capture and analyze network traffic
-  - **Used by**: Development team
-  - **Dependencies**: wnet/packet.h, wnet/tcp.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `CaptureStart()`: Begin packet capture
-    - `CaptureStop()`: End packet capture
-    - `FilterPackets(FilterCriteria criteria)`: Filter packets by type
-    - `DecodePacket(PacketID id)`: Decode packet structure
-    - `SaveCapture(const char* filename)`: Save capture for analysis
-  - **Features**: Real-time packet inspection, protocol decoding, statistical analysis
+  - **Features**:
 
 The packet analysis system supports:
 
@@ -3495,37 +3195,25 @@ These tools are only available in development builds and are essential for ident
 ```
 
 - 🔄 `GameEngine/Scene/RenderObj.h` - Renderable object base class
-  - **Purpose**: Provide core functionality for any object that can be rendered
-  - **Used by**: Scene system, rendering pipeline
-  - **Dependencies**: W3DRenderDevice.h, Transform.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `Draw()`: Render the object
-    - `GetBoundingSphere()`: Get object bounds
-    - `UpdateTransform()`: Update object position/rotation
-    - `OnAddedToScene()`: Handle scene attachment
-  - **Features**: Transform hierarchy, visibility culling, LOD support
+  - **Features**:
 
 - 🔄 `GameEngine/Scene/Scene.h` - Scene graph management
-  - **Purpose**: Organize and manage collections of renderable objects
-  - **Used by**: Game view system, render pipeline
-  - **Dependencies**: RenderObj.h, SceneIterator.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `Add(RenderObj* obj)`: Add object to scene
-    - `Remove(RenderObj* obj)`: Remove object from scene
-    - `Update()`: Process scene changes
-    - `CreateIterator()`: Create scene traversal iterator
-  - **Features**: Spatial organization, visibility determination
+  - **Features**:
 
 - 🎮 `GameClient/W3DScene.h` - Game-specific scene implementation
-  - **Purpose**: Implement specialized scene behavior for RTS gameplay
-  - **Used by**: Game client, tactical view
-  - **Dependencies**: Scene.h, RenderObj.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `UpdateView(Camera* cam)`: Update view parameters
-    - `RenderScene()`: Render current scene state
-    - `ProcessVisibility()`: Determine visible objects
-    - `HandleObjectChanges()`: Process object updates
-  - **Features**: RTS-optimized culling, specialized sorting
+  - **Features**:
 This distributed architecture allows for separation between core rendering functionality and game-specific scene management needs while maintaining a cohesive scene graph system.
 
 </details></blockquote>
@@ -3647,35 +3335,24 @@ Each shader category is optimized for its specific use case while sharing common
 <summary>Resource Management (8+ files)</summary>
 
 - 🔄 `GameRenderer/dx8/dx8texman.h` - DirectX 8 texture manager
-  - **Purpose**: Handle loading, caching, and management of texture resources
-  - **Used by**: DirectX 8 rendering subsystem
-  - **Dependencies**: dx8wrapper.h, texture.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `Release_Textures()`: Free texture resources
-    - `Recreate_Textures()`: Rebuild texture resources
-    - `Add(DX8TextureTrackerClass*)`: Add texture to management system
-    - `Remove(TextureClass*)`: Remove texture from management
-  - **Features**: Texture resource tracking, release and recreation of textures
+  - **Features**:
 
 - 🔄 `GameRenderer/dx8/dx8vertexbuffer.h` - Vertex data management
-  - **Purpose**: Manage vertex buffers for efficient rendering
-  - **Used by**: dx8renderer, mesh rendering systems
-  - **Dependencies**: dx8wrapper.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `Create_Buffer()`: Allocate vertex buffer
-    - `Lock_Buffer()`: Access buffer contents
-    - `Unlock_Buffer()`: Finish buffer updates
-    - `Apply_Buffer()`: Use buffer for rendering
-  - **Features**: Dynamic and static buffer management, vertex formats
+  - **Features**:
 
 - 🔄 `GameRenderer/dx8/dx8indexbuffer.h` - Index buffer management
-  - **Purpose**: Manage index buffers for optimal mesh rendering
-  - **Used by**: dx8renderer, mesh rendering systems
-  - **Dependencies**: dx8wrapper.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `Create_Buffer()`: Allocate index buffer
-    - `Update_Buffer()`: Modify index data
-    - `Apply_Buffer()`: Use index buffer for rendering
   - **Design**: Complements vertex buffers for efficient mesh rendering
 
 </details></blockquote>
@@ -3733,32 +3410,23 @@ The renderer uses a multistage pipeline:
 <summary>Specialized Rendering Systems</summary>
 
 - 🔄 `GameRenderer/dx8/dx8polygonrenderer.h` - Polygon rendering system
-  - **Purpose**: Efficient rendering of polygon meshes
-  - **Used by**: Model rendering, terrain systems
-  - **Dependencies**: dx8renderer.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `Render_Mesh()`: Render 3D mesh
-    - `Render_Strip()`: Render triangle strips
-    - `Apply_Materials()`: Apply material properties
 
 - 🔄 `GameRenderer/dx8/dx8webbrowser.h` - Web content rendering
-  - **Purpose**: Render web content within the game
-  - **Used by**: UI system, in-game browser
-  - **Dependencies**: W3DWebBrowser.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `Navigate()`: Load web content
-    - `Render()`: Draw web content to texture
-    - `HandleInput()`: Process browser interactions
 
 - 🛠️ `GameRenderer/dx8/dx8list.h` - Render command list manager
-  - **Purpose**: Manage collections of render operations
-  - **Used by**: Renderer implementation
-  - **Dependencies**: dx8wrapper.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `Begin_List()`: Start recording commands
-    - `End_List()`: Finalize command list
-    - `Execute_List()`: Process stored commands
-  - **Features**: Command sorting, state change optimization
+  - **Features**:
 
 </details></blockquote>
 
@@ -3775,45 +3443,32 @@ Sound management and playback systems with dual implementation support (Miles Au
 <summary>Audio Interface Layer (5+ files)</summary>
 
 - 🔊 `Common/GameAudio.h` - Main audio interface
-  - **Purpose**: Abstract audio system access for the rest of the engine
-  - **Used by**: GameEngine, game effects systems
-  - **Dependencies**: GameSounds.h, GameMusic.h, GameSpeech.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `Initialize()`: Set up audio system
-    - `PlaySound(SoundID id)`: Play a specific sound
-    - `StopSound(SoundID id)`: Stop a specific sound
-    - `SetVolume(float volume)`: Adjust audio volume
   - **Design**: Factory pattern that selects appropriate audio implementation
 
 - 🔊 `Common/GameSounds.h` - Sound effect management
-  - **Purpose**: Handle non-musical audio (effects, voice, etc.)
-  - **Used by**: GameAudio.h, gameplay systems
-  - **Dependencies**: GameAudio.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `LoadSoundBank(const char* filename)`: Load sound collection
-    - `PlaySound3D(SoundID id, Vector3 position)`: Play positional sound
-    - `PreloadSound(SoundID id)`: Cache sound for immediate playback
-  - **Features**: 3D positional audio, priority-based sound limiting
+  - **Features**:
 
 - 🔊 `Common/GameMusic.h` - Music playback system
-  - **Purpose**: Handle background music and streaming audio
-  - **Used by**: GameAudio.h, game state system
-  - **Dependencies**: GameAudio.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `PlayMusic(const char* trackName)`: Play music track
-    - `CrossfadeToTrack(const char* trackName, float duration)`: Smooth transition
-    - `SetMusicVolume(float volume)`: Adjust music volume
-  - **Features**: Dynamic music system, smooth transitions between tracks
+  - **Features**:
 
 - 🔊 `Common/GameSpeech.h` - Voice line management
-  - **Purpose**: Handle in-game dialogue and announcements
-  - **Used by**: GameAudio.h, unit systems, UI
-  - **Dependencies**: GameAudio.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `PlaySpeech(SpeechID id)`: Play voice line
-    - `PlayUnitSpeech(UnitType type, SpeechType speech)`: Play unit-specific line
-    - `GetSpeechDuration(SpeechID id)`: Get voice line length
-  - **Features**: Priority system for overlapping speech, language variants
+  - **Features**:
 
 </details></blockquote>
 
@@ -3821,15 +3476,11 @@ Sound management and playback systems with dual implementation support (Miles Au
 <summary>Miles Audio Implementation (8+ files)</summary>
 
 - 🔊 `MilesAudioDevice/MilesAudioManager.h` - Miles audio implementation
-  - **Purpose**: Implementation of audio systems using Miles Sound System
-  - **Used by**: GameAudio.h (when Miles is selected)
-  - **Dependencies**: mss.h (Miles SDK)
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `Init3D()`: Initialize 3D audio environment
-    - `LoadDigitalSound(const char* filename)`: Load audio file
-    - `AllocateVoiceHandle()`: Get handle for sound playback
-    - `Update3DPosition(HandleID handle, Vector3 position)`: Update sound position
-  - **Features**: Hardware acceleration, EAX effects support, streaming audio
+  - **Features**:
 
 </details></blockquote>
 
@@ -3837,46 +3488,37 @@ Sound management and playback systems with dual implementation support (Miles Au
 <summary>OpenAL Audio Implementation (5+ files)</summary>
 
 - 🔊 `OpenALAudioDevice/OpenALAudioManager.h` - OpenAL implementation
-  - **Purpose**: Implementation of audio systems using OpenAL
-  - **Used by**: GameAudio.h (when OpenAL is selected)
-  - **Dependencies**: al.h, alc.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `InitializeDevice()`: Set up OpenAL device
-    - `CreateContext()`: Create audio context
-    - `LoadSound(const char* filename)`: Load sound resource
-    - `CreateSource(SoundID id)`: Create playable sound source
-  - **Features**: Cross-platform support, 3D positional audio, effects
+  - **Features**:
 
 - 🔊 `OpenALAudioDevice/OpenALAudioLoader.h` - Sound file loading
-  - **Purpose**: Load various audio formats for OpenAL
-  - **Used by**: OpenALAudioManager.h
-  - **Dependencies**: dr_mp3.h, dr_wav.h, FileSystemEA.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `LoadWaveFile(const char* filename)`: Load WAV format
-    - `LoadMP3File(const char* filename)`: Load MP3 format
 
 - 🔊 `OpenALAudioDevice/dr_mp3.h` - MP3 decoding library
-  - **Purpose**: Decode MP3 audio files
+  - **Purpose**:
 
 - 🔊 `OpenALAudioDevice/dr_wav.h` - WAV decoding library
-  - **Purpose**: Decode WAV audio files
+  - **Purpose**:
 
 - 🔊 `OpenALAudioDevice/Bink/BinkVideoPlayer.h` - Video playback
-  - **Purpose**: Handle Bink video playback with audio integration
+  - **Purpose**:
 
 <blockquote>
 <details>
 <summary>OpenAL Effects System</summary>
 
 - 🔊 `OpenALAudioDevice/effects/ALEffects.h` - OpenAL effects system
-  - **Purpose**: Apply audio effects and processing
-  - **Used by**: OpenALAudioManager.h
-  - **Dependencies**: al.h, efx.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `CreateEffect(EffectType type)`: Create audio effect
-    - `SetEffectParameters(EffectID effect, Parameters params)`: Configure effect
-    - `AttachEffectToSource(EffectID effect, SourceID source)`: Apply effect to source
-  - **Features**: Reverb, chorus, distortion effects
+  - **Features**:
 
 </details>
 </blockquote>
@@ -3961,21 +3603,17 @@ Entry points, launch system, and developer tooling applications.
 <summary>Core Entry Points (2+ files)</summary>
 
 - 🔄 `Main/WinMain.h` - Application entry point
-  - **Purpose**: Initialize and launch the game application
-  - **Used by**: Windows OS
-  - **Dependencies**: GameEngine.h, CommandLine.h, resource.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `WinMain()`: Main application entry point
-    - `ProcessCommandLine()`: Process startup parameters
-    - `InitializeEngine()`: Bootstrap engine components
-    - `RunMessageLoop()`: Main application loop
   - **Design**: Standard Windows application entry point implementing engine bootstrap
 
 - 🔄 `Main/resource.h` - Application resources
-  - **Purpose**: Define application resource IDs
-  - **Used by**: WinMain.h, UI systems
-  - **Dependencies**: None
-  - **Key functions**: N/A (Header definitions only)
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
+  - **Key functions**:
   - **Resources**: Icons, cursors, string tables, dialog templates
 
 </details>
@@ -3986,24 +3624,17 @@ Entry points, launch system, and developer tooling applications.
 <summary>Debug Tools (15+ files)</summary>
 
 - 🛠️ `Main/DebugWindow/DebugWindow.h` - Runtime debugging console
-  - **Purpose**: Provide in-game debugging console and feedback
-  - **Used by**: Development builds
-  - **Dependencies**: DebugWindowExport.h, DebugWindowDialog.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `Initialize()`: Set up debug window
-    - `WriteLine(const char* text)`: Add text to console
-    - `ExecuteCommand(const char* cmd)`: Process debug command
-    - `ToggleVisible()`: Show/hide debug console
-  - **Features**: Command history, variable inspection, performance stats
+  - **Features**:
 
 - 🛠️ `Main/DebugWindow/DebugWindowDialog.h` - Debug UI implementation
-  - **Purpose**: Implement UI for debug console
-- **Used by**: DebugWindow.h
-  - **Dependencies**: Windows API
+  - **Purpose**:
+- **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `Create()`: Create dialog window
-    - `MessageHandler()`: Process window messages
-    - `UpdateContents()`: Refresh display
   - **Design**: Custom window implementation for debugging interface
 
 <blockquote>
@@ -4011,35 +3642,27 @@ Entry points, launch system, and developer tooling applications.
 <summary>Debug Interface Components</summary>
 
 - 🛠️ `Main/DebugWindow/Include/Properties.h` - Property inspection
-  - **Purpose**: Display and modify object properties at runtime
-  - **Used by**: DebugWindowDialog.h
-  - **Dependencies**: HierarchyView.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `DisplayProperties(Object* obj)`: Show object properties
-    - `ModifyProperty(Object* obj, const char* property, const char* value)`: Change property value
-  - **Features**: Type-aware property editing, validation
+  - **Features**:
 
 - 🛠️ `Main/DebugWindow/Include/HierarchyView.h` - Object hierarchy browser
-  - **Purpose**: Display and navigate game object hierarchy
-  - **Used by**: DebugWindowDialog.h
-  - **Dependencies**: EditWindow.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `BuildTree()`: Generate object hierarchy tree
-    - `SelectObject(ObjectID id)`: Select specific object
-    - `ExpandNode(TreeNode* node)`: Expand tree node
-  - **Features**: Live updating, searching, filtering
+  - **Features**:
 
 </details>
 </blockquote>
 
 - 🛠️ `Main/CRCDiff/KVPair.h` - Key-value pair for debugging
-  - **Purpose**: Store key-value pairs for debugging
-  - **Used by**: Debug tools
-  - **Dependencies**: None
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `SetKey(const char* key)`: Set pair key
-    - `SetValue(const char* value)`: Set pair value
-    - `Compare(const KVPair& other)`: Compare pairs
   - **Design**: Simple container for configuration and state comparison
 
 </details>
@@ -4054,35 +3677,25 @@ Entry points, launch system, and developer tooling applications.
 <summary>World Builder (60+ files)</summary>
 
 - 🛠️ `Main/wolSetup/include/WorldBuilder.h` - Map editor main application
-  - **Purpose**: Create and edit game maps
-  - **Used by**: Level designers
-  - **Dependencies**: WorldBuilderDoc.h, WorldBuilderView.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `Initialize()`: Set up map editor
-    - `CreateNewMap()`: Create blank map
-    - `SaveMap()`: Save map to file
-    - `LoadMap()`: Load existing map
-  - **Features**: WYSIWYG editing, terrain manipulation, object placement
+  - **Features**:
 
 - 🛠️ `Main/wolSetup/include/WBHeightMap.h` - Terrain height map editor
-  - **Purpose**: Edit terrain elevation
-  - **Used by**: WorldBuilder.h
-  - **Dependencies**: TerrainMaterial.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `ModifyElevation(int x, int y, float delta)`: Change terrain height
-    - `SmoothRegion(int x, int y, float radius)`: Smooth terrain
-    - `GetHeight(int x, int y)`: Get terrain height
   - **Tools**: Raise/lower, smooth, plateau, ramp creation
 
 - 🛠️ `Main/wolSetup/include/TerrainMaterial.h` - Terrain texturing tool
-  - **Purpose**: Apply and blend terrain textures
-  - **Used by**: WorldBuilder.h
-  - **Dependencies**: TerrainSwatches.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `ApplyTexture(int x, int y, TextureID id)`: Apply texture to terrain
-    - `BlendTextures(int x, int y, TextureID id1, TextureID id2)`: Blend textures
-    - `SetTextureScale(TextureID id, float scale)`: Set texture tiling
-  - **Features**: Texture blending, automatic tiling, texture masks
+  - **Features**:
 
 </details>
 </blockquote>
@@ -4092,35 +3705,25 @@ Entry points, launch system, and developer tooling applications.
 <summary>Particle Editor (10+ files)</summary>
 
 - 🛠️ `Main/ParticleEditor/ParticleEditor.h` - Particle effect editor
-  - **Purpose**: Create and edit particle effects
-  - **Used by**: VFX artists
-  - **Dependencies**: ParticleEditorDialog.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `CreateNewEffect()`: Create new particle effect
-    - `SaveEffect()`: Save effect to file
-    - `PreviewEffect()`: Preview current effect
-    - `ModifyEmitter(EmitterID id, Parameters params)`: Modify emitter properties
-  - **Features**: Live preview, parameter adjustment, emitter configuration
+  - **Features**:
 
 - 🛠️ `Main/ParticleEditor/EmissionTypePanels.h` - Emission property editor
-  - **Purpose**: Edit particle emission parameters
-  - **Used by**: ParticleEditorDialog.h
-  - **Dependencies**: ISwapablePanel.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `SetEmissionRate(float rate)`: Set particle spawn rate
-    - `SetLifetime(float min, float max)`: Set particle lifetime
-    - `SetDirection(float angle, float spread)`: Set emission direction
   - **Design**: Panel-based UI for particle emission settings
 
 - 🛠️ `Main/ParticleEditor/ShaderTypePanels.h` - Particle shader editor
-  - **Purpose**: Edit particle visual properties
-  - **Used by**: ParticleEditorDialog.h
-  - **Dependencies**: ISwapablePanel.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `SetTexture(const char* texturePath)`: Set particle texture
-    - `SetBlendMode(BlendMode mode)`: Set blend mode
-    - `SetColorOverTime(ColorGradient gradient)`: Set color animation
-  - **Features**: Texture selection, blend mode settings, color gradients
+  - **Features**:
 
 </details>
 </blockquote>
@@ -4130,23 +3733,17 @@ Entry points, launch system, and developer tooling applications.
 <summary>Texture Tools (5+ files)</summary>
 
 - 🛠️ `Main/textureCompress/resource.h` - Texture compression tool
-  - **Purpose**: Compress textures for game use
-  - **Used by**: Art pipeline
-  - **Dependencies**: DirectX Texture Tools
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `CompressTexture(const char* input, const char* output)`: Compress texture
-    - `BatchProcess(const char* directory)`: Process multiple textures
-    - `SetCompressionOptions(CompressionOptions options)`: Configure compression
-  - **Features**: Batch processing, format conversion, mipmap generation
+  - **Features**:
 
 - 🛠️ `Main/ImagePacker/Include/ImagePacker.h` - Texture atlas generator
-  - **Purpose**: Pack multiple textures into atlases
-  - **Used by**: Art pipeline
-  - **Dependencies**: ImageInfo.h, TexturePage.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `AddImage(const char* filename)`: Add image to atlas
-    - `PackAtlas(int maxWidth, int maxHeight)`: Generate optimized atlas
-    - `SaveAtlas(const char* filename)`: Save atlas to disk
   - **Algorithm**: Rectangle packing with various heuristics for optimization
 
 </details>
@@ -4159,24 +3756,17 @@ Entry points, launch system, and developer tooling applications.
 <summary>Installation & Launcher (10+ files)</summary>
 
 - 🔄 `Main/Autorun/autorun.h` - Game launcher system
-  - **Purpose**: Launch game with appropriate settings
-  - **Used by**: Game shortcut, CD autorun
-  - **Dependencies**: GetCD.h, Locale_API.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `DetectCD()`: Find game media
-    - `LaunchGame()`: Start game executable
-    - `ShowOptions()`: Display options dialog
-    - `CheckRequirements()`: Verify system requirements
-  - **Features**: CD detection, DirectX version check, installation verification
+  - **Features**:
 
 - 🔄 `Main/Autorun/GetCD.h` - CD detection utility
-  - **Purpose**: Find game installation media
-  - **Used by**: autorun.h
-  - **Dependencies**: Windows API
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `FindGameCD()`: Locate game CD
-    - `GetCDPath()`: Get CD drive path
-    - `VerifyCDContents()`: Check CD validity
   - **Design**: Handles CD detection for installation and launch
 
 <blockquote>
@@ -4184,24 +3774,18 @@ Entry points, launch system, and developer tooling applications.
 <summary>User Interface Components</summary>
 
 - 🖼️ `Main/Autorun/DrawButton.h` - Custom button rendering
-  - **Purpose**: Draw styled buttons for launcher UI
-  - **Used by**: autorun.h
-  - **Dependencies**: None
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `CreateButton(int x, int y, int width, int height)`: Create button
-    - `DrawButton(HDC hdc, bool pressed)`: Draw button state
-    - `HandleMouseEvent(int x, int y)`: Process mouse interaction
   - **Design**: Custom skinned UI elements for launcher
 
 - 🖼️ `Main/Autorun/ViewHTML.h` - HTML content viewer
-  - **Purpose**: Display HTML content in launcher
-  - **Used by**: autorun.h
-  - **Dependencies**: Windows API, Internet Explorer components
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `LoadHTML(const char* html)`: Load HTML content
-    - `LoadFromFile(const char* path)`: Load HTML from file
-    - `HandleNavigation(const char* url)`: Process link clicks
-  - **Features**: Basic HTML rendering, hyperlink handling
+  - **Features**:
 
 </details>
 </blockquote>
@@ -4213,26 +3797,18 @@ Entry points, launch system, and developer tooling applications.
 <summary>Utility Applications (5+ files)</summary>
 
 - 🛠️ `Main/PATCHGET/DownloadManager.h` - Patch download utility
-  - **Purpose**: Download and apply game patches
-  - **Used by**: Update system
-  - **Dependencies**: Registry.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `CheckForUpdates()`: Check for available patches
-    - `DownloadPatch(const char* url)`: Download patch file
-    - `ApplyPatch(const char* file)`: Install downloaded patch
-    - `RollbackPatch()`: Revert failed patch installation
-  - **Features**: Incremental patching, version verification, download resume
+  - **Features**:
 
 - 🛠️ `Main/mangler/mangler.h` - Network packet inspection
-  - **Purpose**: Debug network traffic
-  - **Used by**: Development team
-  - **Dependencies**: wnet/packet.h, wnet/tcp.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `CapturePackets()`: Begin packet capture
-    - `FilterPackets(FilterCriteria criteria)`: Filter captured packets
-    - `InspectPacket(PacketID id)`: View packet contents
-    - `ReplayPacket(PacketID id)`: Resend captured packet
-  - **Features**: Live packet capture, filtering, content inspection
+  - **Features**:
 
 </details>
 </blockquote>
@@ -4242,25 +3818,18 @@ Entry points, launch system, and developer tooling applications.
 <summary>Localization Tools (5+ files)</summary>
 
 - 🛠️ `Main/Babylon/loadsave.h` - Localization data management
-  - **Purpose**: Process translation string files
-  - **Used by**: Localization team
-  - **Dependencies**: TransDB.h, expimp.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `LoadStringTable(const char* filename)`: Load string database
-    - `SaveStringTable(const char* filename)`: Save string database
-    - `ImportTranslation(const char* filename)`: Import translated strings
-    - `ExportStrings(const char* filename)`: Export strings for translation
   - **Design**: Manages language-specific text resources
 
 - 🛠️ `Main/Babylon/TransDB.h` - Translation database
-  - **Purpose**: Store and manage translated strings
-  - **Used by**: loadsave.h, transcs.h
-  - **Dependencies**: noxstring.h
+  - **Purpose**:
+  - **Used by**:
+  - **Dependencies**:
   - **Key functions**:
-    - `AddString(StringID id, const char* text)`: Add translation string
-    - `GetString(StringID id, LanguageID lang)`: Get translated string
-    - `FindMissing(LanguageID lang)`: Find untranslated strings
-  - **Features**: Support for multiple languages, version tracking, validation
+  - **Features**:
 
 </details>
 </blockquote>
