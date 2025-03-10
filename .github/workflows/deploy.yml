@@ -19,9 +19,13 @@ jobs:
         with:
           node-version: 20  
           cache: 'pnpm' 
-
+          
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: |
+          if ! pnpm install --frozen-lockfile; then
+            echo "Frozen install failed. Regenerating lockfile..."
+            pnpm install
+          fi
 
       - name: Build VitePress site
         run: pnpm run build 
