@@ -1,23 +1,38 @@
-name: Deploy VitePress site to Pages
+name: Deploy VitePress site to GitHub Pages
 
 on:
   push:
-    branches: [main] # Or your main branch name
-
+    branches: [main] 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20 # Or your preferred Node.js version
-          cache: npm
 
-      - run: npm install # Or yarn install or pnpm install
-      - run: npm run build # Or yarn build or pnpm build
-
-      - uses: actions/deploy-pages@v4
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
         with:
-          artifact-name: vitepress-site
-          path: ./.vitepress/dist
+          version: 8 
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20  
+          cache: 'pnpm' 
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build VitePress site
+        run: pnpm run build 
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./.vitepress/dist  
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}

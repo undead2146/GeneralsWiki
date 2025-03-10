@@ -1,0 +1,26 @@
+{
+  "devDependencies": {
+    "mermaid": "^10.6.1",
+    "vitepress": "^1.0.0-rc.40",
+    "vitepress-plugin-mermaid": "^2.0.16"
+  },
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview",
+    "serve": "vitepress serve"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "@algolia/client-search"
+      ]
+    },
+    "overrides": {
+      "dayjs": "^1.11.10"
+    }
+  },
+  "dependencies": {
+    "dayjs": "^1.11.10"
+  }
+}

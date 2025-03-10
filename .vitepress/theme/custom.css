@@ -1,0 +1,130 @@
+/**
+ * Component: Home & Brand
+ * --------------------------------------------------------------------------
+ */
+
+:root {
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: linear-gradient(120deg, #ff3d00 30%, #ff9a00);
+  
+  --vp-home-hero-image-filter: blur(40px);
+  --vp-home-hero-image-background-image: linear-gradient(
+    -45deg, 
+    rgba(255, 61, 0, 0.7) 30%, 
+    rgba(255, 154, 0, 0.7)
+  );
+
+  /* C&C Generals theme - orange/red */
+  --vp-c-brand: #ff3d00;
+  --vp-c-brand-light: #ff5722;
+  --vp-c-brand-lighter: #ff7043;
+  --vp-c-brand-dark: #e64a19;
+  --vp-c-brand-darker: #d84315;
+}
+
+/**
+ * Component: Custom Block
+ * --------------------------------------------------------------------------
+ */
+:root {
+  --vp-custom-block-tip-border: var(--vp-c-brand);
+  --vp-custom-block-tip-text: var(--vp-c-brand-darker);
+  --vp-custom-block-tip-bg: rgba(255, 61, 0, 0.05);
+}
+
+.dark {
+  --vp-custom-block-tip-border: var(--vp-c-brand);
+  --vp-custom-block-tip-text: var(--vp-c-brand-lighter);
+  --vp-custom-block-tip-bg: rgba(255, 61, 0, 0.1);
+}
+
+/**
+ * Component: Tabs
+ * --------------------------------------------------------------------------
+ */
+.vp-doc .tabs {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.vp-doc .tabs button.tab {
+  border-bottom-color: var(--vp-c-divider);
+  font-weight: 600;
+  color: var(--vp-c-text-2);
+}
+
+.vp-doc .tabs button.tab.active {
+  border-bottom-color: var(--vp-c-brand);
+  color: var(--vp-c-brand);
+}
+
+/**
+ * Component: Code blocks
+ * --------------------------------------------------------------------------
+ */
+.vp-doc div[class*='language-'] {
+  background-color: var(--vp-code-block-bg);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.vp-doc [class*='language-'] code {
+  color: var(--vp-code-block-color);
+  padding: 0 1.25rem;
+  font-size: 0.9em;
+}
+
+/**
+ * Component: Tables
+ * --------------------------------------------------------------------------
+ */
+.vp-doc table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 0.9em;
+}
+
+.vp-doc th {
+  background-color: var(--vp-c-bg-soft);
+  font-weight: 600;
+  text-align: left;
+}
+
+.vp-doc tr:nth-child(2n) {
+  background-color: var(--vp-c-bg-soft);
+}
+
+.vp-doc td, .vp-doc th {
+  padding: 8px 16px;
+  border: 1px solid var(--vp-c-divider);
+}
+
+/**
+ * Component: Headings
+ * --------------------------------------------------------------------------
+ */
+.vp-doc h2 {
+  border-top: 1px solid var(--vp-c-divider);
+  padding-top: 24px;
+  margin-top: 24px;
+}
+
+.vp-doc h3 {
+  color: var(--vp-c-brand);
+  font-size: 1.35rem;
+  margin-bottom: 0.75em;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --vp-home-hero-image-filter: blur(56px);
+  }
+}
+
+@media (min-width: 960px) {
+  :root {
+    --vp-home-hero-image-filter: blur(68px);
+  }
+}
