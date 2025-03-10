@@ -1,0 +1,23 @@
+name: Deploy VitePress site to Pages
+
+on:
+  push:
+    branches: [main] # Or your main branch name
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20 # Or your preferred Node.js version
+          cache: npm
+
+      - run: npm install # Or yarn install or pnpm install
+      - run: npm run build # Or yarn build or pnpm build
+
+      - uses: actions/deploy-pages@v4
+        with:
+          artifact-name: vitepress-site
+          path: ./.vitepress/dist
