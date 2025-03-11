@@ -40,14 +40,14 @@ graph TD
 
 | System | Documentation | Description |
 |--------|---------------|-------------|
-| **Common** | [Common System](CoreSystems/Common.md) | Foundation services including memory management, file system, configuration, and core utilities |
-| **GameClient** | [GameClient System](CoreSystems/GameClient.md) | User interface, input handling, display management, and client-side game representation |
-| **GameLogic** | [GameLogic System](CoreSystems/GameLogic.md) | Game mechanics, object behavior, AI, physics, and simulation |
-| **GameNetwork** | [GameNetwork System](CoreSystems/GameNetwork.md) | Multiplayer connectivity, synchronization, and online services |
-| **GameRenderer** | [GameRenderer System](CoreSystems/GameRenderer.md) | 3D rendering through DirectX, visual effects, and scene management |
-| **Audio** | [Audio Systems](CoreSystems/Audio.md) | Sound and music playback with dual implementation (Miles Audio/OpenAL) |
-| **Main** | [Main System](CoreSystems/Main.md) | Application entry points, initialization, and core loops |
-| **Tools** | [Tools System](CoreSystems/Tools.md) | Development utilities for content creation and debugging |
+| **Common** | [Common System](../Engine/CoreSystems/Common.md) | Foundation services including memory management, file system, configuration, and core utilities |
+| **GameClient** | [GameClient System](../Engine/CoreSystems/GameClient.md) | User interface, input handling, display management, and client-side game representation |
+| **GameLogic** | [GameLogic System](../Engine/CoreSystems/GameLogic.md) | Game mechanics, object behavior, AI, physics, and simulation |
+| **GameNetwork** | [GameNetwork System](../Engine/CoreSystems/GameNetwork.md) | Multiplayer connectivity, synchronization, and online services |
+| **GameRenderer** | [GameRenderer System](../Engine/CoreSystems/GameRenderer.md) | 3D rendering through DirectX, visual effects, and scene management |
+| **Audio** | [Audio Systems](../Engine/CoreSystems/Audio.md) | Sound and music playback with dual implementation (Miles Audio/OpenAL) |
+| **Main** | [Main System](../Engine/CoreSystems/Main.md) | Application entry points, initialization, and core loops |
+| **Tools** | [Tools System](../Engine/CoreSystems/Tools.md) | Development utilities for content creation and debugging |
 
 ::: info NOTE
 "GameRenderer" is implemented in `Code/GameEngineDevice/Include/W3DDevice/` and may be referred to as "W3DDevice" in some documentation.
