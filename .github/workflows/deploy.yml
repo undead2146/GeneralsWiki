@@ -3,6 +3,12 @@ name: Deploy VitePress site to GitHub Pages
 on:
   push:
     branches: [main] 
+    
+permissions:
+  contents: read
+  pages: write      # This is required for actions/deploy-pages
+  id-token: write   # This is required for actions/deploy-pages
+  
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
