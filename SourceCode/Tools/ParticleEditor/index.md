@@ -49,7 +49,7 @@ The Particle Editor provides a real-time environment for designers to create, te
 
 ### Editor Interface
 
-![Particle Editor Interface](../../assets/images/particle_editor_interface.png)
+Particle Editor Interface
 
 The interface is divided into several main sections:
 - Effect browser - Lists available particle systems

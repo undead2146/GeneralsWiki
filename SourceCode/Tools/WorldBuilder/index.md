@@ -47,7 +47,7 @@ The WorldBuilder includes functionality for:
 
 WorldBuilder allows designers to create and modify maps for the game, including terrain shaping, object placement, scripting, and AI configuration.
 
-![WorldBuilder Interface](../../assets/images/worldbuilder_interface.png)
+<!-- ![WorldBuilder Interface](../assets/images/worldbuilder_interface.png)  Add these images-->
 
 ## Key Features
 
