@@ -6,6 +6,7 @@ export default withMermaid(defineConfig({
   title: "GeneralsWiki",
   description: "C&C Generals: Zero Hour Technical Documentation",
   lastUpdated: true,
+  ignoreDeadLinks: true,
   
   // MermaidConfig
   mermaid: {

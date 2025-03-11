@@ -40,14 +40,14 @@ graph TD
 
 | System | Documentation | Description |
 |--------|---------------|-------------|
-| **Common** | [Common System](Common_System.md) | Foundation services including memory management, file system, configuration, and core utilities |
-| **GameClient** | [GameClient System](GameClient_System.md) | User interface, input handling, display management, and client-side game representation |
-| **GameLogic** | [GameLogic System](GameLogic_System.md) | Game mechanics, object behavior, AI, physics, and simulation |
-| **GameNetwork** | [GameNetwork System](GameNetwork_System.md) | Multiplayer connectivity, synchronization, and online services |
-| **GameRenderer** | [GameRenderer System](GameRenderer_System.md) | 3D rendering through DirectX, visual effects, and scene management |
-| **Audio** | [Audio Systems](Audio_Systems.md) | Sound and music playback with dual implementation (Miles Audio/OpenAL) |
-| **Main** | [Main System](Main_System.md) | Application entry points, initialization, and core loops |
-| **Tools** | [Tools System](Tools_System.md) | Development utilities for content creation and debugging |
+| **Common** | [Common System](../Systems/Common.md) | Foundation services including memory management, file system, configuration, and core utilities |
+| **GameClient** | [GameClient System](../Systems/GameClient.md) | User interface, input handling, display management, and client-side game representation |
+| **GameLogic** | [GameLogic System](../Systems/GameLogic.md) | Game mechanics, object behavior, AI, physics, and simulation |
+| **GameNetwork** | [GameNetwork System](../Systems/GameNetwork.md) | Multiplayer connectivity, synchronization, and online services |
+| **GameRenderer** | [GameRenderer System](../Systems/GameRenderer.md) | 3D rendering through DirectX, visual effects, and scene management |
+| **Audio** | [Audio Systems](../Systems/Audio.md) | Sound and music playback with dual implementation (Miles Audio/OpenAL) |
+| **Main** | [Main System](../Systems/Main.md) | Application entry points, initialization, and core loops |
+| **Tools** | [Tools System](../Systems/Tools.md) | Development utilities for content creation and debugging |
 
 ::: info NOTE
 "GameRenderer" is implemented in `Code/GameEngineDevice/Include/W3DDevice/` and may be referred to as "W3DDevice" in some documentation.
