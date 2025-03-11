@@ -153,7 +153,7 @@ This document was generated with AI assistance and requires verification by engi
   
   <div class="gs-card">
     <h3>For Modders</h3>
-    <p>The <a href="/SourceCode/Tools/WorldBuilder/">WorldBuilder</a> documentation will help you create and modify maps.</p>
+    <p>The <a href="/SourceCode/Tools/WorldBuilder/index.md">WorldBuilder</a> documentation will help you create and modify maps.</p>
     <p>Learn about <a href="/SourceCode/Engine/Subsystems/INIConfiguration">INI Configuration</a> to understand how game data is defined and loaded.</p>
   </div>
   
