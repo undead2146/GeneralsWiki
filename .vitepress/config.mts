@@ -35,6 +35,7 @@ export default withMermaid(defineConfig({
       optimizeDeps: {
         include: ['dayjs', 'mermaid']
       }
+    }
   },
 
   // Theme Config
