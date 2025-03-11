@@ -25,14 +25,16 @@ export default withMermaid(defineConfig({
     resolve: {
       alias: {
         // If there are still issues with dayjs
-        'dayjs/plugin': 'node_modules/dayjs/esm/plugin',
-        'dayjs': 'node_modules/dayjs/esm',
-        'dayjs/esm': 'dayjs'
+        // Yes I am still getting issues with dayjs
+        alias: [
+          { find: /^dayjs\/esm$/, replacement: 'dayjs' },
+          { find: /^dayjs\/esm\/plugin\/(.*)$/, replacement: 'dayjs/plugin/$1' },
+          { find: 'dayjs/plugin', replacement: 'dayjs/plugin' }
+        ]
+      },
+      optimizeDeps: {
+        include: ['dayjs', 'mermaid']
       }
-    },
-    optimizeDeps: {
-      include: ['dayjs']
-    }
   },
 
   // Theme Config
