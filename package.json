@@ -1,14 +1,21 @@
 {
-  "devDependencies": {
-    "mermaid": "^11.4.1",
-    "vitepress": "^1.0.0-rc.40",
-    "vitepress-plugin-mermaid": "^2.0.17"
-  },
+  "name": "generalswiki",
+  "version": "1.0.0",
+  "description": "C&C Generals: Zero Hour Technical Documentation",
+  "main": "index.js",
   "scripts": {
     "dev": "vitepress dev",
     "build": "vitepress build",
     "preview": "vitepress preview",
     "serve": "vitepress serve"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.10"
+  },
+  "devDependencies": {
+    "mermaid": "^11.4.1",
+    "vitepress": "^1.0.0-rc.40",
+    "vitepress-plugin-mermaid": "^2.0.17"
   },
   "pnpm": {
     "peerDependencyRules": {
@@ -19,8 +26,5 @@
     "overrides": {
       "dayjs": "^1.11.10"
     }
-  },
-  "dependencies": {
-    "dayjs": "^1.11.10"
   }
 }

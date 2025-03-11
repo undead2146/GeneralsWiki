@@ -8,6 +8,9 @@ export default withMermaid(defineConfig({
   lastUpdated: true,
   ignoreDeadLinks: true,
   
+  // Add the base URL configuration
+  base: '/GeneralsWiki/', // This should match your GitHub repository name
+  
   // MermaidConfig
   mermaid: {
     // refer https://mermaid.js.org/config/setup/modules/mermaidAPI.html#mermaidapi-configuration-defaults for options
