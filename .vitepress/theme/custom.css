@@ -20,6 +20,19 @@
   --vp-c-brand-lighter: #ff7043;
   --vp-c-brand-dark: #e64a19;
   --vp-c-brand-darker: #d84315;
+  
+  /* Card styling variables */
+  --card-border-radius: 10px;
+  --card-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  --card-hover-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  --card-bg: var(--vp-c-bg-soft);
+  --card-hover-bg: var(--vp-c-bg-mute);
+  --section-spacing: 48px;
+  --card-spacing: 24px;
+  --card-padding: 24px;
+  --icon-size-large: 2.5rem;
+  --icon-size-medium: 2.2rem;
+  --icon-size-small: 2rem;
 }
 
 /**
@@ -117,6 +130,215 @@
   margin-bottom: 0.75em;
 }
 
+/**
+ * Generic Card Grid System
+ * --------------------------------------------------------------------------
+ */
+/* Base grid layout for all card collections */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--card-spacing);
+  margin: var(--section-spacing) 0;
+}
+
+/* Base card styling for all types of cards */
+.card {
+  background-color: var(--card-bg);
+  border-radius: var(--card-border-radius);
+  padding: var(--card-padding);
+  box-shadow: var(--card-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--card-hover-shadow);
+}
+
+.card h3 {
+  margin-top: 0;
+  color: var(--vp-c-brand);
+  border-bottom: 1px solid var(--vp-c-divider);
+  padding-bottom: 10px;
+  margin-bottom: 16px;
+}
+
+.card ul {
+  padding-left: 20px;
+}
+
+.card code {
+  background-color: var(--vp-c-bg-mute);
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+/* Card icon styles */
+.card-icon {
+  font-size: var(--icon-size-large);
+  margin-bottom: 16px;
+  color: var(--vp-c-brand);
+}
+
+.card-icon.medium {
+  font-size: var(--icon-size-medium);
+}
+
+.card-icon.small {
+  font-size: var(--icon-size-small);
+}
+
+/* Card link collections */
+.card-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.card-links a {
+  display: inline-block;
+  background-color: var(--vp-c-bg-mute);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.card-links a:hover {
+  background-color: var(--vp-c-brand-dimmed);
+  color: white;
+}
+
+/**
+ * Specific component implementations using generic card system
+ * --------------------------------------------------------------------------
+ */
+
+/* About Section */
+.about-section {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 32px;
+  margin: 40px 0;
+  align-items: center;
+}
+
+.about-image img {
+  border-radius: var(--card-border-radius);
+  width: 100%;
+  box-shadow: var(--card-shadow);
+}
+
+.about-content {
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.about-content strong {
+  color: var(--vp-c-brand);
+}
+
+/* Documentation highlights */
+.doc-highlights {
+  composes: card-grid;
+}
+
+.highlight-card {
+  composes: card;
+}
+
+.highlight-icon {
+  composes: card-icon;
+}
+
+.highlight-links {
+  composes: card-links;
+}
+
+/* Feature grid */
+.feature-grid {
+  composes: card-grid;
+}
+
+.feature-card {
+  composes: card;
+}
+
+/* Getting started section */
+.getting-started {
+  composes: card-grid;
+}
+
+.gs-card {
+  composes: card;
+}
+
+.gs-icon {
+  composes: card-icon medium;
+}
+
+/* Updates section */
+.updates-section {
+  background-color: var(--card-bg);
+  border-radius: var(--card-border-radius);
+  padding: var(--card-padding);
+  margin: var(--section-spacing) 0;
+  box-shadow: var(--card-shadow);
+}
+
+.update-item {
+  display: flex;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--vp-c-divider-light);
+}
+
+.update-item:last-child {
+  border-bottom: none;
+}
+
+.update-date {
+  flex: 0 0 120px;
+  font-weight: 500;
+  color: var(--vp-c-text-2);
+}
+
+.update-title {
+  color: var(--vp-c-text-1);
+}
+
+/* Highlights and Community Containers */
+.highlights-container,
+.community-container {
+  margin-top: var(--section-spacing);
+}
+
+.highlights-container h2,
+.community-container h2 {
+  margin-bottom: 24px;
+}
+
+.highlights-grid,
+.community-grid {
+  composes: card-grid;
+}
+
+.highlight-item,
+.community-item {
+  composes: card;
+}
+
+.highlight-item .icon,
+.community-item .icon {
+  composes: card-icon small;
+}
+
+/**
+ * Responsive adjustments
+ * --------------------------------------------------------------------------
+ */
 @media (min-width: 640px) {
   :root {
     --vp-home-hero-image-filter: blur(56px);
@@ -126,5 +348,20 @@
 @media (min-width: 960px) {
   :root {
     --vp-home-hero-image-filter: blur(68px);
+  }
+}
+
+@media (max-width: 768px) {
+  .about-section {
+    grid-template-columns: 1fr;
+  }
+  
+  .card-grid, 
+  .doc-highlights, 
+  .feature-grid, 
+  .getting-started, 
+  .highlights-grid, 
+  .community-grid {
+    gap: 16px;
   }
 }

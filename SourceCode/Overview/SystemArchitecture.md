@@ -118,20 +118,20 @@ flowchart LR
 
 ## System Communication
 
-<div class="feature-grid">
-  <div class="feature-card">
+<div class="card-grid">
+  <div class="card">
     <h3>Direct Function Calls</h3>
     <p>Used for synchronous, performance-critical operations where immediate execution is required.</p>
   </div>
-  <div class="feature-card">
+  <div class="card">
     <h3>Event/Message System</h3>
     <p>For asynchronous communication and loose coupling between components.</p>
   </div>
-  <div class="feature-card">
+  <div class="card">
     <h3>Shared Data Structures</h3>
     <p>For efficient bulk data transfer between tightly coupled systems.</p>
   </div>
-  <div class="feature-card">
+  <div class="card">
     <h3>Command Objects</h3>
     <p>For operation encapsulation, queuing, and deterministic execution.</p>
   </div>
@@ -140,8 +140,8 @@ flowchart LR
 
 ## Design Patterns
 
-<div class="feature-grid">
-  <div class="feature-card">
+<div class="card-grid">
+  <div class="card">
     <h3>Module System</h3>
     <p><strong>Composition-Based Object Behaviors</strong></p>
     <ul>
@@ -153,7 +153,7 @@ flowchart LR
     </ul>
   </div>
 
-  <div class="feature-card">
+  <div class="card">
     <h3>Factory Pattern</h3>
     <p><strong>Dynamic Object Creation</strong></p>
     <ul>
@@ -164,7 +164,7 @@ flowchart LR
     </ul>
   </div>
 
-  <div class="feature-card">
+  <div class="card">
     <h3>Observer Pattern</h3>
     <p><strong>Event Notification</strong></p>
     <ul>
@@ -175,7 +175,7 @@ flowchart LR
     </ul>
   </div>
 
-  <div class="feature-card">
+  <div class="card">
     <h3>Command Pattern</h3>
     <p><strong>Action Encapsulation</strong></p>
     <ul>
@@ -186,7 +186,7 @@ flowchart LR
     </ul>
   </div>
 
-  <div class="feature-card">
+  <div class="card">
     <h3>Entity-Component</h3>
     <p><strong>Object Behavior Composition</strong></p>
     <ul>
@@ -239,8 +239,8 @@ User commands → Command queue → Frame packaging → Network transmission →
 
 ## Performance Optimization
 
-<div class="feature-grid">
-  <div class="feature-card">
+<div class="card-grid">
+  <div class="card">
     <h3>Data-Oriented Design</h3>
     <ul>
       <li>Memory layout optimization for cache efficiency</li>
@@ -250,7 +250,7 @@ User commands → Command queue → Frame packaging → Network transmission →
     </ul>
   </div>
 
-  <div class="feature-card">
+  <div class="card">
     <h3>Rendering Optimizations</h3>
     <ul>
       <li>View frustum culling</li>
@@ -261,7 +261,7 @@ User commands → Command queue → Frame packaging → Network transmission →
     </ul>
   </div>
 
-  <div class="feature-card">
+  <div class="card">
     <h3>CPU Utilization</h3>
     <ul>
       <li>Prioritized update scheduling</li>
@@ -270,7 +270,7 @@ User commands → Command queue → Frame packaging → Network transmission →
     </ul>
   </div>
 
-  <div class="feature-card">
+  <div class="card">
     <h3>Memory Management</h3>
     <ul>
       <li>Zone-based allocation</li>
@@ -281,7 +281,7 @@ User commands → Command queue → Frame packaging → Network transmission →
     </ul>
   </div>
 
-  <div class="feature-card">
+  <div class="card">
     <h3>Networking Efficiency</h3>
     <ul>
       <li>Delta compression</li>
@@ -292,43 +292,3 @@ User commands → Command queue → Frame packaging → Network transmission →
     </ul>
   </div>
 </div>
-
-<style>
-/* Unified styling system for feature cards */
-.feature-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  margin: 24px 0;
-}
-
-.feature-card {
-  background-color: var(--vp-c-bg-soft);
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.feature-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-}
-
-.feature-card h3 {
-  margin-top: 0;
-  color: var(--vp-c-brand);
-  border-bottom: 1px solid var(--vp-c-divider);
-  padding-bottom: 10px;
-}
-
-.feature-card ul {
-  padding-left: 20px;
-}
-
-.feature-card code {
-  background-color: var(--vp-c-bg-mute);
-  padding: 2px 4px;
-  border-radius: 4px;
-}
-</style>

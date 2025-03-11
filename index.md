@@ -96,45 +96,45 @@ This document was generated with AI assistance and requires verification by engi
 
 ## Documentation Highlights
 
-<div class="doc-highlights">
-  <div class="highlight-card">
-    <div class="highlight-icon">💻</div>
+<div class="card-grid">
+  <div class="card">
+    <div class="card-icon">💻</div>
     <h3>Source Code Architecture</h3>
     <p>Explore the modular engine design with detailed documentation of key systems and their interactions.</p>
-    <div class="highlight-links">
+    <div class="card-links">
       <a href="/GeneralsWiki/SourceCode/Overview/SystemArchitecture">System Overview</a>
       <a href="/GeneralsWiki/SourceCode/Overview/DesignPatterns">Design Patterns</a>
       <a href="/GeneralsWiki/SourceCode/Reference/Glossary">Glossary</a>
     </div>
   </div>
   
-  <div class="highlight-card">
-    <div class="highlight-icon">🔧</div>
+  <div class="card">
+    <div class="card-icon">🔧</div>
     <h3>Development Tools</h3>
     <p>Learn about the official development tools including WorldBuilder, Particle Editor, and more.</p>
-    <div class="highlight-links">
+    <div class="card-links">
       <a href="/GeneralsWiki/SourceCode/Tools/WorldBuilder/">WorldBuilder</a>
       <a href="/GeneralsWiki/SourceCode/Tools/ParticleEditor/">Particle Editor</a>
       <a href="/GeneralsWiki/SourceCode/Tools/CommandLine">Command Line</a>
     </div>
   </div>
   
-  <div class="highlight-card">
-    <div class="highlight-icon">⚡</div>
+  <div class="card">
+    <div class="card-icon">⚡</div>
     <h3>Game Systems</h3>
     <p>Detailed documentation of game mechanics, AI, networking, and rendering systems.</p>
-    <div class="highlight-links">
+    <div class="card-links">
       <a href="/GeneralsWiki/SourceCode/Engine/CoreSystems/GameLogic">Game Logic</a>
       <a href="/GeneralsWiki/SourceCode/Engine/CoreSystems/GameNetwork">Networking</a>
       <a href="/GeneralsWiki/SourceCode/Engine/CoreSystems/GameRenderer">Rendering</a>
     </div>
   </div>
   
-  <div class="highlight-card">
-    <div class="highlight-icon">🔨</div>
+  <div class="card">
+    <div class="card-icon">🔨</div>
     <h3>Building the Engine</h3>
     <p>Step-by-step guides for compiling the game from source code in various environments.</p>
-    <div class="highlight-links">
+    <div class="card-links">
       <a href="/GeneralsWiki/SourceCode/Builds/Windows/VS2022">VS2022 Guide</a>
       <a href="/GeneralsWiki/SourceCode/Builds/Windows/VC6">VC6 Guide</a>
       <a href="/GeneralsWiki/SourceCode/Builds/Windows/CLionVC6">CLion Guide</a>
@@ -144,20 +144,23 @@ This document was generated with AI assistance and requires verification by engi
 
 ## Getting Started
 
-<div class="getting-started">
-  <div class="gs-card">
+<div class="card-grid">
+  <div class="card">
+    <div class="card-icon medium">💻</div>
     <h3>For Developers</h3>
     <p>Start with the <a href="/GeneralsWiki/SourceCode/Overview/SystemArchitecture">System Architecture</a> overview to understand the engine's design philosophy and component structure.</p>
     <p>Then explore the <a href="/GeneralsWiki/SourceCode/Engine/CoreSystems/Common">Core Systems</a> documentation to learn about specific subsystems.</p>
   </div>
   
-  <div class="gs-card">
+  <div class="card">
+    <div class="card-icon medium">🔨</div>
     <h3>For Modders</h3>
     <p>The <a href="/GeneralsWiki/SourceCode/Tools/WorldBuilder/index.md">WorldBuilder</a> documentation will help you create and modify maps.</p>
     <p>Learn about <a href="/GeneralsWiki/SourceCode/Engine/Subsystems/INIConfiguration">INI Configuration</a> to understand how game data is defined and loaded.</p>
   </div>
   
-  <div class="gs-card">
+  <div class="card">
+    <div class="card-icon medium">📝</div>
     <h3>For Contributors</h3>
     <p>Check our <a href="/GeneralsWiki/community/contributing">Contributing Guidelines</a> to learn how you can improve this wiki.</p>
     <p>Use the <a href="/GeneralsWiki/SourceCode/Reference/Glossary">Technical Glossary</a> to navigate the codebase effectively.</p>
@@ -185,154 +188,22 @@ This document was generated with AI assistance and requires verification by engi
   </div>
 </div>
 
-<style>
-/* General improvements */
-:root {
-  --card-border-radius: 10px;
-  --card-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  --card-bg: var(--vp-c-bg-soft);
-  --card-hover-bg: var(--vp-c-bg-mute);
-  --section-spacing: 48px;
-  --card-spacing: 24px;
-}
-
-/* About section */
-.about-section {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 32px;
-  margin: 40px 0;
-  align-items: center;
-}
-
-.about-image img {
-  border-radius: var(--card-border-radius);
-  width: 100%;
-  box-shadow: var(--card-shadow);
-}
-
-.about-content {
-  font-size: 1.05rem;
-  line-height: 1.6;
-}
-
-.about-content strong {
-  color: var(--vp-c-brand);
-}
-
-/* Documentation highlights */
-.doc-highlights {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--card-spacing);
-  margin: var(--section-spacing) 0;
-}
-
-.highlight-card {
-  background-color: var(--card-bg);
-  border-radius: var(--card-border-radius);
-  padding: 24px;
-  box-shadow: var(--card-shadow);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.highlight-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-}
-
-.highlight-icon {
-  font-size: 2.5rem;
-  margin-bottom: 16px;
-}
-
-.highlight-card h3 {
-  margin: 0 0 16px 0;
-  color: var(--vp-c-brand);
-}
-
-.highlight-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 16px;
-}
-
-.highlight-links a {
-  display: inline-block;
-  background-color: var(--vp-c-bg-mute);
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  text-decoration: none;
-  transition: background-color 0.2s;
-}
-
-.highlight-links a:hover {
-  background-color: var(--vp-c-brand-dimmed);
-  color: white;
-}
-
-/* Getting started section */
-.getting-started {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--card-spacing);
-  margin: var(--section-spacing) 0;
-}
-
-.gs-card {
-  background-color: var(--card-bg);
-  border-radius: var(--card-border-radius);
-  padding: 24px;
-  box-shadow: var(--card-shadow);
-}
-
-.gs-card h3 {
-  margin-top: 0;
-  color: var(--vp-c-brand);
-  border-bottom: 1px solid var(--vp-c-divider);
-  padding-bottom: 10px;
-  margin-bottom: 16px;
-}
-
-/* Recent updates */
-.updates-section {
-  background-color: var(--card-bg);
-  border-radius: var(--card-border-radius);
-  padding: 24px;
-  margin: var(--section-spacing) 0;
-  box-shadow: var(--card-shadow);
-}
-
-.update-item {
-  display: flex;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--vp-c-divider-light);
-}
-
-.update-item:last-child {
-  border-bottom: none;
-}
-
-.update-date {
-  flex: 0 0 120px;
-  font-weight: 500;
-  color: var(--vp-c-text-2);
-}
-
-.update-title {
-  color: var(--vp-c-text-1);
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .about-section {
-    grid-template-columns: 1fr;
-  }
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Process highlights and community sections from frontmatter
+  const highlightsSection = document.createElement('div');
+  highlightsSection.className = 'highlights-container';
+  highlightsSection.innerHTML = '<h2>Specialized Documentation</h2><div class="card-grid"></div>';
   
-  .doc-highlights, .getting-started {
-    gap: 16px;
+  const communitySection = document.createElement('div');
+  communitySection.className = 'community-container';
+  communitySection.innerHTML = '<h2>Community Resources</h2><div class="card-grid"></div>';
+  
+  // Insert before the Recent Updates section
+  const updatesSection = document.querySelector('.updates-section');
+  if (updatesSection && updatesSection.parentNode) {
+    updatesSection.parentNode.insertBefore(highlightsSection, updatesSection);
+    updatesSection.parentNode.insertBefore(communitySection, updatesSection);
   }
-}
-</style>
+});
+</script>
