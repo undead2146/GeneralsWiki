@@ -26,7 +26,8 @@ export default withMermaid(defineConfig({
       alias: {
         // If there are still issues with dayjs
         'dayjs/plugin': 'node_modules/dayjs/esm/plugin',
-        'dayjs': 'node_modules/dayjs/esm'
+        'dayjs': 'node_modules/dayjs/esm',
+        'dayjs/esm': 'dayjs'
       }
     },
     optimizeDeps: {
